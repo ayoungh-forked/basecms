@@ -1,0 +1,1 @@
+# This should be an image file from which we generate .ico and apple touch icons automatically!

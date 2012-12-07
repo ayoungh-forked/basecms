@@ -1,0 +1,78 @@
+@font-face { 
+    font-family: 'WebSymbolsRegular';
+	src: url('/fonts/websymbols/websymbols-regular-webfont.eot');
+	src: url('/fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	     url('/fonts/websymbols/websymbols-regular-webfont.woff') format('woff'),
+	     url('/fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'),
+	     url('/fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+}
+
+/* Libertine Open Font Project */
+
+@font-face { 
+    font-family: 'Linux Libertine';
+    font-weight: normal;
+	src: url('/fonts/LinLibertine_R.woff') format('woff');
+}
+
+@font-face { 
+    font-family: 'Linux Libertine';
+    font-weight: bold;
+    src: url('/fonts/LinLibertine_RB.woff') format('woff');
+}
+
+@font-face { 
+    font-family: 'Linux Biolinum';
+    font-weight: normal;
+    font-variant: normal;
+    src: url('/fonts/LinBiolinum_R.woff') format('woff');
+}
+
+@font-face { 
+    font-family: 'Linux Biolinum';
+    font-weight: bold;
+    font-variant: normal;
+    src: url('/fonts/LinBiolinum_RB.woff') format('woff');
+}
+
+@font-face { 
+    font-family: 'Linux Biolinum C';
+    font-weight: normal;
+    src: url('/fonts/LinBiolinum_aS.woff') format('woff');
+}
+
+@font-face { 
+    font-family: 'Linux Biolinum C';
+    font-weight: bold;
+    src: url('/fonts/LinBiolinum_aSB.woff') format('woff');
+}
+
+/* League of Moveable Type */
+
+@font-face { 
+    font-family: 'League Gothic';
+    src: url('/fonts/leaguegothic-regular-webfont.woff') format('woff');
+}
+@font-face { 
+    font-family: 'Junction';
+    src: url('/fonts/Junction-webfont.woff') format('woff');
+}
+@font-face { 
+    font-family: 'Ostrich Black';
+    src: url('/fonts/ostrich-black-webfont.woff') format('woff');
+}
+@font-face { 
+    font-family: 'Raleway';
+    src: url('/fonts/raleway_thin-webfont.woff') format('woff');
+}
+
+
+.icon {
+    font-family: WebSymbolsRegular, Helvetica, sans-serif;    
+}
+
+a.icon,
+a .icon {
+    text-decoration: none;
+    color: inherit;
+}

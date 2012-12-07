@@ -1,0 +1,131 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Linux Libertine, serif;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.ui-sortable-placeholder {
+    outline: 1px dashed #AAA;
+    visibility: visible!important;
+}
+
+#item_list,
+#item_list * {
+    list-style: none;    
+}
+
+#item_list {
+    padding: 0;    
+}
+
+#item_list ol {
+    padding-left: 3px;  
+    padding-bottom: 5px;
+}
+
+#item_list > ol {
+    padding-left: 0;   
+    margin: 0;
+}
+
+#item_list ol li {
+    padding: 5px 0px 0px 13px;
+}
+
+#item_list ol li {
+    border-left: 1px dotted #000;    
+}
+
+#item_list > ol > li {
+    border-left: 0;
+}
+
+#item_list .expand_all,
+#item_list .collapse_all,
+#item_list .collapse_control,
+#item_list .expand_control {
+    display: none;
+    font-family: WebSymbolsRegular, sans; 
+    cursor: pointer;
+}
+
+#list_header {
+    padding: 5px;
+    margin: 5px 0;
+}
+
+#list_header .title {
+    margin-left: 10px;    
+}
+
+#list_header .title,
+#item_list .title {
+    font-weight: bold;    
+}
+
+#list_header .date,
+#item_list .date {
+    float: right;
+    padding-right: 15px;
+}
+
+#item_list .edit_link {
+     display: inline-block;
+     width: 50%;
+     height: 100%;
+}
+
+#item_list .handle {
+    cursor: move;    
+}
+
+#controls,
+#controls ul {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: rgba(150,150,150,.2);
+}
+
+#controls li {
+    padding: 0;
+    list-style:none;
+    display:inline-block;
+    height: 100%;
+    width: 40px;
+}
+
+#controls li a {
+    display: block;
+    margin: 4px 0 0 17px;
+    font-size: 20px;
+    color: #FFF;
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    outline: none;
+    padding: 8px;
+}
+
+#controls li:hover a {
+    color: #5D719E;
+}
+
+.icon .description {
+    display:none;
+}
+
+.add:hover .icon {
+    color: green!important;    
+}
+
+.remove:hover .icon {
+    color: red!important;    
+}

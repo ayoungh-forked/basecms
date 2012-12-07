@@ -1,0 +1,12 @@
+# Cloud 9 junk
+.c9revisions/
+.settings
+
+# Vim junk
+*.swp
+
+# I tend to be pretty cavalier about the working directories that
+# I use wget in
+*.zip
+*.tar.gz
+*.tgz
