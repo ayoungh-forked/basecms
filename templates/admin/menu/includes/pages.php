@@ -1,23 +1,13 @@
 <div id="controls">
     <ul>
         <li class="add">
-            <a href="#" class="icon">
+            <a href="/admin/edit/?view=pages&id=new" target="edit_pane" class="icon">
                 + <span class="description">Add</span>
             </a>       
         </li>
         <li class="remove">
-            <a href="#" class="icon">
+            <a href="" class="icon">
                - <span class="description">Remove</span>
-            </a>
-        </li>
-        <li class="lock">
-            <a href="#" class="icon">
-               x <span class="description">Lock selected</span>
-            </a>
-        </li>
-        <li class="unlock">
-            <a href="#" class="icon">
-               w <span class="description">Unlock selected</span>
             </a>
         </li>
         <li class="expand_all">

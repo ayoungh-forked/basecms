@@ -1,6 +1,9 @@
 <?php
 
     use BaseCMS\core\templating\Fields as Fields;
+    use BaseCMS\core\Users as u;
+    
+    $user = u::current_user();
 
     $id = $request->params['id'];
     $page = $db->get_one('pages', array('id' => $id));
@@ -8,11 +11,11 @@
     $row_array = $page->_get_row();
     
     $fieldmap = array(
-        'title' => 'input',
+        'title' => 'text',
         'url_path' => 'url:path_fragment',
         'live' => 'bool',
         'template' => 'template',
-        'description' => 'text',
+        'description' => 'textarea',
         'keywords' => 'text',
         //'tags' => 'tags',
         'content' => 'html',
@@ -25,17 +28,29 @@
         'redirect' => 'url'
     );
 
-    $fields = new Fields($fieldmap, $row_array);
-        
-    $fields->render('live', 'Make this page live');
+    $fields = new Fields($fieldmap, $row_array, false);
+    $fields->form_start();  
+?>
+
+<h2>Edit page</h2>
+
+<?php
     $fields->render('title');
     $fields->render('url_path', 'Path', 'How you want this page to appear in the URL. Eg., <em>sample-page</em>');
-    $fields->render('redirect', 'Redirect URL', 'Instead of displaying this page, redirect this URL to another page.');
     $fields->render('template', 'Select a template');
-    
+    $fields->render('content', 'Page content');
     $fields->render('tags');
-    
+?>
+<h3>Page settings</h3>
+
+<?php
+    $fields->render('live', 'Make this page live');
+    if ($user['admin'])
+        $fields->render('admin_lock', 'Administrator lock');
+    if ($user['developer'])
+        $fields->render('developer_lock', 'Developer lock');
+    $fields->render('redirect', 'Redirect URL', 'Instead of displaying this page, redirect this URL to another page.');
     $fields->render('keywords', 'Page keywords', 'A <strong>few</strong> relevant terms or subjects related to this page\'s content.');
     $fields->render('description', 'Page description', 'The description for this page. This will not appear on the page itself, but will be used by web crawlers and search engines like Google when displaying a summary for this page.');
+    $fields->form_end();
     
-    $fields->output();

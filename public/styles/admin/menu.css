@@ -4,7 +4,7 @@ html, body {
 }
 
 body {
-    font-family: Linux Libertine, serif;
+    font-family: Helvetica, Arial, sans-serif;
     overflow-x: hidden;
 }
 
@@ -109,7 +109,6 @@ body {
     margin: 4px 0 0 17px;
     font-size: 20px;
     color: #FFF;
-    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
     outline: none;
     padding: 8px;
 }

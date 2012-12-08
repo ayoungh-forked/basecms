@@ -4,6 +4,7 @@
     
     $user = u::current_user();
     $name = $user['real_name'];
+    if (!$name) $name = $user['username'];
     
     $section = $url_kwargs['section'];
     if (!$section) $section = 'pages';
@@ -29,9 +30,9 @@
             <a href="/">View site</a>
         </li>
     </ul>
-    <div class="welcome">
-        Welcome back to Base<?=($name ? ", $name" : '') ?>
-    </div>
+    <span class="welcome">
+        Logged in as <?=$name?>
+    </span>
 </header>
 <nav>
     <ul>

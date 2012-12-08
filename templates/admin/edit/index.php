@@ -6,7 +6,10 @@
         <link href="/styles/admin/fonts.css" rel="stylesheet" type="text/css" />
         <link href="/styles/admin/edit.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/scripts/vendor/jquery/jquery.min-1.8.3.js"></script>
-        <script type="text/javascript" src="/scripts/admin/subpage.js"></script>
+        <script type="text/javascript" src="/scripts/admin/edit.js"></script>
+        <script type="text/javascript" src="/scripts/vendor/xing/wysihtml5-0.4.0pre.min.js"></script>
+        <script type="text/javascript" src="/scripts/vendor/xing/parser_rules/advanced.js"></script>
+        <script type="text/javascript" src="/scripts/admin/edit.js"></script>
     </head>
     <body>
         <?php

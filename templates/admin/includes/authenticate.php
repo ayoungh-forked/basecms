@@ -47,7 +47,7 @@
             $error = false;
     
         ?>
-        
+        <div id="login_frame">
             <form action="" method="POST" class="<?=($error ? 'error' : ''); ?>" id="login">
             
                 <h1 id="#logo">BaseCMS</h1>
@@ -70,7 +70,7 @@
                 
                 <button>Submit &rarr;</button>
             </form>
-        
+        </div>
         <?php
     
     }

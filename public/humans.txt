@@ -23,11 +23,11 @@ Code:
     The jQuery JavaScript library - http://jquery.com/
     Components from jQuuery UI - http://jqueryui.com/
     The nestedSortable plugin for jQuery UI by Manuele J Sarfatti - http://mjsarfatti.com/
+    wysihtml5 HTML text editor by Christopher Blum - https://github.com/xing/wysihtml5/
 
 Fonts:
-    Linux Libertine fonts - http://www.linuxlibertine.org/
     Raleway, by Matt McInerney - http://www.theleagueofmoveabletype.com/raleway
     Websymbols, byJust Be Nice Studio - http://www.justbenicestudio.com/studio/websymbols/
 
 Images:
-    Dust by Dominik Kiss - http://subtlepatterns.com/dust/
+    Debut Light by Luke McDonald - http://subtlepatterns.com/debut-light/
