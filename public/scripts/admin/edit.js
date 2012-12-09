@@ -25,7 +25,7 @@ $(document).ready(function () {
                 message += ' Take note: all pages that are sub-pages of this one will also be deleted.';    
             }
             var ok = window.top.confirm(message);
-            //if (!ok)
-            //    e.preventDefault();
+            if (!ok)
+                e.preventDefault();
         });
 });

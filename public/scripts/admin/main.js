@@ -8,7 +8,7 @@ $(document).ready(function () {
             rel = $this.attr('rel'),
             $panels = $('#panel_container');
         $panels.hide();
-        $('iframe#menu').attr('src', '/admin/menu?type='+rel);
+        $('iframe#menu').attr('src', '/admin/menu?view='+rel);
         //$('iframe#edit_pane').attr('src', '/admin/edit?type='+rel);
         $this.parent().addClass('active').siblings().removeClass('active');
         $panels.ready(function() {

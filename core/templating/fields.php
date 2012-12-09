@@ -41,7 +41,7 @@
         
         function form_start($action = '', $method = "POST", $enctype = "multipart/form-data") {
             ?>
-            <form action="<?=$action?>" method="<?=$post?>" enctype="<?=$enctype?>">
+            <form action="<?=$action?>" method="<?=$method?>" enctype="<?=$enctype?>">
                 <input type="hidden" name="id" value="<?=$this->defaults['id']?>" />
                 <input type="hidden" name="view" value="<?=$this->view?>" />
             <?php

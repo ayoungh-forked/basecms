@@ -31,8 +31,13 @@ $(document).ready(function() {
     $('.nested_sortable li').on('DOMNodeInserted', function () {
         $(this).find('.collapse_control').show().siblings('.expand_control').hide()
                .parents('.handle').siblings('ol').show();   
-    }).on('mouseup', function() {
-        console.log($('.nested_sortable').nestedSortable('serialize'));
+    });
+    
+    $nestedSortable.on('mouseup', function() {
+        setTimeout(function() {
+            var order_array = $nestedSortable.nestedSortable('serialize');
+            $.post(window.location, order_array);
+        }, 400);
     });
     
     $('#controls').on('click', '.expand_all', function() {

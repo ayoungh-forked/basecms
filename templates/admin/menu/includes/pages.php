@@ -1,3 +1,8 @@
+<?php
+
+    use BaseCMS\core\Helpers as h;
+
+?>
 <div id="controls">
     <ul>
         <li class="expand_all">
@@ -21,10 +26,23 @@
 
     if ($request->params['order']) {
         $pages = $db->get('pages', null, array('sort_order', 'creation_date'));
+        $pages_by_id = array();
         foreach($pages as $page) {
-            $page->sort_order = $sort_order;
+            $pages_by_id[$page->id] = $page;
+        }
+        
+        $order = $request->params['order'];
+        if (!is_array($order)) {
+            h::abort(400, 'Unknown parameters');
+        }
+        
+        $sort_order = 0;
+        foreach ($order as $child_id => $parent_id) {
+            $page = $pages_by_id[$child_id];
             $page->parent_id = $parent_id;
+            $page->sort_order = $sort_order;
             $db->save($page);
+            $sort_order++;
         }
     } else {
         $pages = $db->get('pages', null, array('sort_order', 'creation_date'));
@@ -57,7 +75,7 @@
         
         ?>
         
-        <li id="<?=$page->id;?>" class="<?=implode(" ", $classes)?>">
+        <li id="order_<?=$page->id;?>" class="<?=implode(" ", $classes)?>">
             <div class="page_info handle">
                 <a class="collapse_control">&#91;</a>
                 <a class="expand_control">&#93;</a>
@@ -73,7 +91,7 @@
             <?php
                 if (!empty($pages_by_parent[$page_id])) {
                     ?>
-                    <ol id="<?=$page->id;?>-children">
+                    <ol>
                     <?php
                         foreach ($pages_by_parent[$page_id] as $child_id) {
                             render_page_list($child_id, $pages_by_id, $pages_by_parent);
@@ -98,7 +116,7 @@
         </span>
     </div>
     <div id="item_list">
-        <ol class="nested_sortable collapsable_list" id="0">
+        <ol class="nested_sortable collapsable_list">
         <?php
             foreach($pages_by_parent[0] as $page_id) {
                 render_page_list($page_id, $pages_by_id, $pages_by_parent);
