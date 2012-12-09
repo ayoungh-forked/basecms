@@ -1,15 +1,5 @@
 <div id="controls">
     <ul>
-        <li class="add">
-            <a href="/admin/edit/?view=pages&id=new" target="edit_pane" class="icon">
-                + <span class="description">Add</span>
-            </a>       
-        </li>
-        <li class="remove">
-            <a href="" class="icon">
-               - <span class="description">Remove</span>
-            </a>
-        </li>
         <li class="expand_all">
             <a href="#" class="icon">
                &#93; <span class="description">Expand all</span>
@@ -20,10 +10,25 @@
                &#91; <span class="description">Collapse all</span>
             </a>
         </li>
+        <li class="add">
+            <a href="/admin/edit/?view=pages&id=new" target="edit_pane" class="icon">
+                + <span class="description">Add</span>
+            </a>       
+        </li>
     </ul>
 </div>
 <?php
-    $pages = $db->get('pages', null, array('sort_order', 'creation_date'));
+
+    if ($request->params['order']) {
+        $pages = $db->get('pages', null, array('sort_order', 'creation_date'));
+        foreach($pages as $page) {
+            $page->sort_order = $sort_order;
+            $page->parent_id = $parent_id;
+            $db->save($page);
+        }
+    } else {
+        $pages = $db->get('pages', null, array('sort_order', 'creation_date'));
+    }
     
     $pages_by_parent = array();
     $pages_by_id = array();
@@ -52,7 +57,7 @@
         
         ?>
         
-        <li data-id="<?=$page->id;?>" class="<?=implode(" ", $classes)?>">
+        <li id="<?=$page->id;?>" class="<?=implode(" ", $classes)?>">
             <div class="page_info handle">
                 <a class="collapse_control">&#91;</a>
                 <a class="expand_control">&#93;</a>
@@ -68,7 +73,7 @@
             <?php
                 if (!empty($pages_by_parent[$page_id])) {
                     ?>
-                    <ol>
+                    <ol id="<?=$page->id;?>-children">
                     <?php
                         foreach ($pages_by_parent[$page_id] as $child_id) {
                             render_page_list($child_id, $pages_by_id, $pages_by_parent);
@@ -93,7 +98,7 @@
         </span>
     </div>
     <div id="item_list">
-        <ol class="nested_sortable collapsable_list">
+        <ol class="nested_sortable collapsable_list" id="0">
         <?php
             foreach($pages_by_parent[0] as $page_id) {
                 render_page_list($page_id, $pages_by_id, $pages_by_parent);

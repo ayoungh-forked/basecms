@@ -5,8 +5,7 @@
 # Vim junk
 *.swp
 
-# I tend to be pretty cavalier about the working directories that
-# I use wget in
+# I tend to be pretty cavalier about the working directories that I use wget in
 *.zip
 *.tar.gz
 *.tgz

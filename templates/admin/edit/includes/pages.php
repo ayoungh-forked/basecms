@@ -1,14 +1,62 @@
 <?php
 
-    use BaseCMS\core\templating\Fields as Fields;
     use BaseCMS\core\Users as u;
+    use BaseCMS\core\templating\Fields as Fields;
+    
+    use BaseCMS\db\RowObject as RowObject;
     
     $user = u::current_user();
 
     $id = $request->params['id'];
-    $page = $db->get_one('pages', array('id' => $id));
-
-    $row_array = $page->_get_row();
+    if (!$id || $id == 'new') {
+        $record = new RowObject(array(
+            'title' => '',
+            'url_path' => '',
+            'live' => 0,
+            'template' => null,
+            'description' => '',
+            'keywords' => '',
+            'tags' => '',
+            'content' => '',
+            'styles' => '',
+            'scripts' => '',
+            'developer_lock' => 0,
+            'admin_lock' => 0,
+            'live_from' => null,
+            'live_until' => null,
+            'redirect' => ''
+        ), 'pages');
+    } else {
+        $record = $db->get_one('pages', array('id' => $id));
+    }
+    
+    if ($request->params['submit']) {
+        $record->_update($request->params);        
+        $id = $db->save($record);
+        if (!$record->id)
+            $record = $db->get_one('pages', array('id' => $id));
+        ?>
+        <script type="text/javascript">
+            window.top.document.getElementById('menu').contentWindow.location.reload();
+        </script>
+        <?php
+    } else if ($request->params['delete']) {
+        function delete_with_subrecords($record, $db) {
+            $child_records = $db->get('pages', array('parent_id' => $record->id));
+            $db->delete($record);
+            foreach($child_records as $record) {
+                delete_with_subrecords($record, $db);
+                $db->delete($record);
+            }
+        }
+        delete_with_subrecords($record, $db);
+        ?>
+        <script type="text/javascript">
+            window.top.document.getElementById('menu').contentWindow.location.reload();
+            window.location = '/admin/edit/';
+        </script>
+        <?php
+    }
     
     $fieldmap = array(
         'title' => 'text',
@@ -28,12 +76,10 @@
         'redirect' => 'url'
     );
 
-    $fields = new Fields($fieldmap, $row_array, false);
+    $fields = new Fields($fieldmap, $record, false);
     $fields->form_start();  
 ?>
-
 <h2>Edit page</h2>
-
 <?php
     $fields->render('title');
     $fields->render('url_path', 'Path', 'How you want this page to appear in the URL. Eg., <em>sample-page</em>');
@@ -42,7 +88,6 @@
     $fields->render('tags');
 ?>
 <h3>Page settings</h3>
-
 <?php
     $fields->render('live', 'Make this page live');
     if ($user['admin'])

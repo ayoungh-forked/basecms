@@ -2,7 +2,8 @@
 
     namespace BaseCMS\db;
     
-    class DatabaseException extends \Exception {}
+    use BaseCMS\db\RowObject as RowObject;
+    use BaseCMS\db\DatabaseException as DatabaseException;
 
     class Connector {
     
@@ -21,9 +22,7 @@
             
         }
     
-        function execute($query, $params = null) { 
-        
-            $query = (string) $query;
+        function execute($query, $params = null, $get_id = false) {
             
             if (defined('MYSQL_DEBUG')) echo $query, var_dump($params);
         
@@ -40,14 +39,16 @@
                 $result[] = $row;
             };
         
-            return $result;
+            if (!$get_id)
+                return $result;
+            else
+                return $this->conn->lastInsertId();
         
         }
         
         function get($table, $where_params = null, $order_params = null, $limit = null) {
-        
-            $table = (string) $table;
-            
+            if (!$this->valid_column_name($table))
+                throw new DatabaseException('Invalid table name in call to Connector::get');
             
             if ($limit && is_numeric($limit))
                 $limit = ' LIMIT ' . intval($limit);
@@ -98,9 +99,8 @@
                 if (!$table)
                     throw new DatabaseException('RowObject does not have a table property and no table as been passed to Connector::save');
             }
-            if (strrpos('`', $table) !== false) {
-                throw new DatabaseException('Bad table name in call to Connector::save');
-            }
+            if (!$this->valid_column_name($table))
+                throw new DatabaseException('Invalid table name in call to Connector::save');
         
             // We assume that if an id field is provided, we should update the 
             // table based on the id. Otherwise we will 
@@ -124,15 +124,30 @@
                 throw new DatabaseException('RowObject with no values in row property in Connector::save?');
             
             if (!$where) {
+                $get_id = true;
                 $verb = 'INSERT INTO';
                 $set .= ', creation_date = NOW() ';
-            } else
+            } else {
+                $get_id = false;
                 $verb = 'UPDATE';
+            }
                 
-            $query = $verb . " " . $table . " " . $set . " " . $where;
+            $query = $verb . " `" . $table . "` " . $set . " " . $where;
             $params = array_merge($params, $wparams);            
-            $result = $this->execute($query, $params);
+            $result = $this->execute($query, $params, $get_id);
             return $result;
+        }
+        
+        function delete($row_obj, $table = null) {
+            if (!$table) {
+                $table = $row_obj->_get_table();
+                if (!$table)
+                    throw new DatabaseException('RowObject does not have a table property and no table as been passed to Connector::delete');
+            }
+            if (!$this->valid_column_name($table))
+                throw new DatabaseException('Invalid table name in call to Connector::delete');
+            $query = "DELETE FROM `" . $table . "` WHERE id = :id";
+            return $this->execute($query, array('id' => $row_obj->id));
         }
         
         private function valid_column_name($k) {
@@ -170,7 +185,7 @@
                 }
             }
             
-            if ($v && $o) 
+            if ($verb && $o)
                 $o = $verb . ' ' . $o;
                 
             return array($o, $p);
@@ -182,54 +197,4 @@
             return new RowObject($row_array, $table);
         }
         
-    }
-    
-    class RowObject {
-    
-        private $table;
-        private $row;
-    
-        function __construct($row_array, $table = null) {
-        
-            $this->row = $row_array;            
-            $this->_set_table($table);
-            
-        }
-        
-        function __get($k) {
-            if (array_key_exists($k, $this->row)) 
-                return $this->row[$k];
-            else
-                throw new \Exception('Can\'t get value in RowObject matching ' . $this->table . '.' . $k);
-        }
-        
-        function __set($k, $v) {
-            if (array_key_exists($k, $this->row)) 
-                $this->row[$k] = $v;
-            else
-                throw new \Exception('Can\'t set value in RowObject matching ' . $this->table . '.' . $k);
-        }
-        
-        function _get_table() {
-            return $this->table;
-        }
-        
-        function _set_table($table) {
-        
-            if (strrpos('`', $table) !== false) {
-                throw new DatabaseException('Bad table name in call to RowObject::_set_table');
-            }
-            $this->table = $table;
-            return true;
-            
-        }
-        
-        function _get_row() {
-            return $this->row;
-        }
-
-        function _update($new_array) {
-            $this->row = array_merge($this->row, $new_array);
-        }
-
     }

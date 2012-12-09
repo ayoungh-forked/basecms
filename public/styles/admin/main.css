@@ -119,12 +119,12 @@ h2 {
     color: #1A1F2C;
 }
 
-form#login button:focus { 
+#login button:focus { 
     text-decoration: underline;
 }
 
 
-form#login button::-moz-focus-inner {
+#login button::-moz-focus-inner {
     outline: 0;
     border:0;
 }
@@ -132,11 +132,19 @@ form#login button::-moz-focus-inner {
 #login ::-webkit-input-placeholder {
     color: #6F7D9E;
 }
+
 #login :-moz-placeholder {
     color: #6F7D9E;
 }
+
 #login :-ms-input-placeholder {
-        color: #6F7D9E;
+    color: #6F7D9E;
+}
+
+#login .error {
+    font-size: 90%;
+    color: red;
+    margin-top: 20px;
 }
 
 header {

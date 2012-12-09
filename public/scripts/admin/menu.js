@@ -8,7 +8,13 @@ $(document).ready(function() {
         $nestedSortable.nestedSortable({
             handle: 'div',
             items: 'li',
-            toleranceElement: '> div'
+            toleranceElement: '> div',
+            
+			opacity: .6,
+            
+			revert: 150,
+
+			isTree: true,
         });
             
         $('.nested_sortable ol').hide();
@@ -25,6 +31,8 @@ $(document).ready(function() {
     $('.nested_sortable li').on('DOMNodeInserted', function () {
         $(this).find('.collapse_control').show().siblings('.expand_control').hide()
                .parents('.handle').siblings('ol').show();   
+    }).on('mouseup', function() {
+        console.log($('.nested_sortable').nestedSortable('serialize'));
     });
     
     $('#controls').on('click', '.expand_all', function() {

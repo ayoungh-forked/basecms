@@ -11,7 +11,9 @@
         private $output = '';
         private $store_output ;
     
-        function __construct($fieldmap, $defaults, $store_output = true) {
+        function __construct($fieldmap, $row_obj, $store_output = true) {
+            $defaults = $row_obj->_get_row();
+            $this->view = $row_obj->_get_table();
             $this->fieldmap = $fieldmap;
             $this->defaults = $defaults;
             $this->store_output = $store_output;
@@ -41,19 +43,20 @@
             ?>
             <form action="<?=$action?>" method="<?=$post?>" enctype="<?=$enctype?>">
                 <input type="hidden" name="id" value="<?=$this->defaults['id']?>" />
+                <input type="hidden" name="view" value="<?=$this->view?>" />
             <?php
         }
         
         function form_end($save_button_label = "Save", $show_delete_button = true, $delete_button_label = "Delete") {
           ?>
             <div class="form_buttons">
-                <button name="submit" class="save">
+                <button name="submit" class="save" value="1">
                     <?=$save_button_label?>
                 </button>
                 <?php
                     if ($show_delete_button) {
                 ?>
-                <button name="delete" class="delete">
+                <button name="delete" class="delete" value="1">
                     <?=$delete_button_label?>
                 </button>
                 <?php

@@ -1,4 +1,7 @@
 
+-> nestedSortable: use native collapse methods, etc. Get serialize to work??
+
+
 ## DB and previews:
 
 * Move RowObject to its own class file (same with exceptions?)
@@ -31,3 +34,6 @@
 * Change references to 'routes', 'router', and 'routing' to 'maps', 'cartographer', and 'mapping'.
 
 * email-based password attempts resetting
+
+* Selfupdate capabilities, with git dependency?
+

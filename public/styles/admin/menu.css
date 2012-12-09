@@ -120,11 +120,11 @@ body {
 .icon .description {
     display:none;
 }
-
-.add:hover .icon {
-    color: green!important;    
+#controls .add {
+    float: right;    
+    width: 65px;
 }
 
-.remove:hover .icon {
-    color: red!important;    
+.add:hover .icon {
+    color: green!important;
 }
