@@ -13,14 +13,29 @@
     </head>
     <body>
         <?php
-            $section = $request->params['view'];
+        
+            $view = $request->params['view'];
+            $t = null;
             
-            switch($section) {
-                case 'pages':
-                    $t = 'pages.php';
-                    break;
-                default:
-                    $t = null;
+            $result = $db->get('record_types');
+            $record_types = array();
+            foreach ($result as $row) {
+                $record_types[] = $row->name;
+                if ($view == $row->name)
+                    $t = "records.php";
+            }
+            
+            if (!$t) {
+                switch($view) {
+                    case 'users':
+                        $t = 'users.php';
+                        break;
+                    case 'pages':
+                        $t = 'pages.php';
+                        break;
+                    default:
+                        $t = null;
+                }
             }
             
             if ($t)

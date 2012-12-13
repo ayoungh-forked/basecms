@@ -6,13 +6,19 @@
      *
      */
     
+    include('text.php'); // Handy string manipulation functions
+
     function base_autoloader($classname) {
         
         $pathlist = explode('\\', $classname);
         
         $maxkey = max(array_keys($pathlist));
-        $pathlist[$maxkey] = strtolower($pathlist[$maxkey]).'.php';
-        $base_path = ROOT_DIR . implode('/', array_slice($pathlist, 1, count($pathlist)));
+        $pathlist[$maxkey] = BaseCMS\core\Text::camelcase_to_snakecase($pathlist[$maxkey]);
+        $pathlist[$maxkey] .= '.php';
+        foreach ($pathlist as $k => $p) {
+            if ($k != $maxkey) $pathlist[$k] = strtolower($p);
+        }
+	$base_path = ROOT_DIR . implode('/', array_slice($pathlist, 1, count($pathlist)));
         
         /*
          * Check the site directory for a local version of the class in 
@@ -44,7 +50,7 @@
         $msg = $e->getMessage();   
         echo "Uncaught Exception\n";
         echo $msg;
-        echo print_r($e->getTrace());
+        print_r($e->getTrace());
     }
 
     spl_autoload_register('base_autoloader', true, true);

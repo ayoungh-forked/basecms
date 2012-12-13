@@ -2,6 +2,8 @@
 
 $(document).ready(function () {
     
+        var errors = false;
+    
         $('textarea.html').each(function() {
             var $this = $(this),
                 id = $this.attr('id');
@@ -17,10 +19,41 @@ $(document).ready(function () {
             }
         });
         
+        $('form').on('change', function () {
+            errors = false;
+            console.log(1);
+            $(this).find('input, textarea, select').each(function() {
+                var $this = $(this);
+                if ($this.hasClass('confirm')) {
+            console.log(2);
+                    var val = $this.val(),
+                        name = $this.attr('name'),
+                        $pair = $('input[name="'+name.slice(0, name.length - '_confirm'.length)+'"]'),
+                        pairval = $pair.val();
+                    if (val != pairval) {
+                        errors = true;   
+                        $this.addClass('errors');
+                        $pair.addClass('errors');
+                    } else {
+                        $this.removeClass('errors');
+                        $pair.removeClass('errors');
+                    }
+                }
+            });
+        });
+        
+        // Use off here, because Firefox at least sometimes runs document.ready
+        // twice.
+        $('button.save').off('click').on('click', function(e) {
+            if (errors) {
+                alert('This entry cannot be saved because there are errors.');
+                e.preventDefault();
+            }
+        });
+        
         $('button.delete').off('click').on('click', function (e) {
-            e.stopPropagation();
             var view =  $(this).closest('form').find('input[name="view"]').attr('value'),
-                message = 'Are you sure you want to delete this '+view.slice(0, view.length - 1)+'? (There is no reversing this action!)';
+                message = 'Are you sure you want to delete this entry? (There is no reversing this action!)';
             if (view == 'pages') {
                 message += ' Take note: all pages that are sub-pages of this one will also be deleted.';    
             }

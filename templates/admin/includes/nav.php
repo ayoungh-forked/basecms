@@ -15,8 +15,8 @@
     foreach ($result as $row) {
         $section_list[] = $row->name;
     }
-    $section_list[] = 'users';
-    $section_list[] = 'settings';
+    if ($user['admin'] || $user['developer'])
+        $section_list[] = 'users';
 ?>
 <header>
     <ul>
@@ -47,5 +47,10 @@
             <?php
             }
         ?>
+        <li class="<?=($section == 'settings' ? 'active' : '')?>">
+            <a href="/admin/settings/" rel="">
+                Settings
+            </a>
+        </li>
     </ul>
 </nav>

@@ -6,17 +6,26 @@
     
     class Fields {
     
+        private $view = null;
         private $fieldmap;
         private $defaults;
         private $output = '';
         private $store_output ;
+        private $hidden_fields = '';
     
-        function __construct($fieldmap, $row_obj, $store_output = true) {
+        function __construct($fieldmap, $row_obj, $store_output = true, $view = null) {
             $defaults = $row_obj->_get_row();
-            $this->view = $row_obj->_get_table();
+            $this->view = $view;
+            if (!$this->view) $this->view = $row_obj->_get_table();
             $this->fieldmap = $fieldmap;
             $this->defaults = $defaults;
             $this->store_output = $store_output;
+            foreach($fieldmap as $name => $type) {
+                if ($type == 'hidden') {
+                    $value = $defaults[$name];
+                    $this->hidden_fields .= "<input type=\"hidden\" name=\"$name\" value=\"$value\" />";
+                }
+            }
         }
   
         function render($name, $display_title, $description, $placholder) {
@@ -44,6 +53,7 @@
             <form action="<?=$action?>" method="<?=$method?>" enctype="<?=$enctype?>">
                 <input type="hidden" name="id" value="<?=$this->defaults['id']?>" />
                 <input type="hidden" name="view" value="<?=$this->view?>" />
+                <?=$this->hidden_fields?>
             <?php
         }
         
@@ -139,6 +149,23 @@
                     <input type="<?=$type_attr?>" name="<?=$name?>" id="<?=$name?>" value="<?=$default_value?>" class="<?=$classes?>" <?=$attrs?>/>
                     <?=$description?>
                     <?php 
+                    break;
+                case 'password':
+                    if ($placeholder) $attrs .= 'placeholder="'.$placeholder.'"';
+                    ?>
+                    <label for="<?=$name?>"><?=$display_title?></label>
+                    <input type="password" name="<?=$name?>" id="<?=$name?>" value="" class="<?=$classes?>" <?=$attrs?>/>
+                    <?php
+                        echo $description;
+                        if ($qualifier == 'new') {
+                    ?>
+                        <label for="<?=$name?>_confirm" class="confirm"></label>
+                        <input type="password" name="<?=$name?>_confirm" id="<?=$name?>_confirm" value="" class="<?=$classes?> confirm" <?=$attrs?>/>
+                        <div class="description">
+                            Re-enter the new password to confirm that it is correct.
+                        </div>
+                    <?php
+                        }
                     break;
                 case 'html':
                     if ($placeholder) $attrs .= 'placeholder="'.$placeholder.'" ';

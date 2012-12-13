@@ -78,6 +78,10 @@ h1, h2, h3 {
     margin-left: 215px;
 }
 
+.form_field .description em {
+    font-style: normal!important;    
+}
+
 form .form_buttons {
     position: fixed;
     bottom: 0;
@@ -138,4 +142,12 @@ form button.delete:hover {
     margin: 10px 0;
     height: 350px;
     font-size: 14px;
+}
+
+.form_field .confirm {
+    margin-top: 10px;
+}
+
+.errors {
+    box-shadow: 2px 2px 4px red;   
 }

@@ -134,5 +134,9 @@
             }
             return (substr($haystack, -$length) === $needle);
         }
+        
+        static function mysqlish_now() {
+            return date('Y-m-d H:i:s');
+        }
     
     }

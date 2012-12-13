@@ -1,17 +1,10 @@
 
--> nestedSortable: use native collapse methods, etc. Get serialize to work??
+-> nestedSortable: use native collapse methods
+-> Admin: wire up history.pushState correctly for admin tabs, or do away with it altogether.
 
-
-## DB and previews:
-
-* Move RowObject to its own class file (same with exceptions?)
 
 ## Other stuff:
 
-* USer and page records
-* blog/news/etc. records
-* Add a method for registering new autoloader locations.
- 
 * MD templates(?)
 * Image sizing on demand
 * tumblr module (get on request and cache locally(?)(synch too?))
@@ -34,6 +27,4 @@
 * Change references to 'routes', 'router', and 'routing' to 'maps', 'cartographer', and 'mapping'.
 
 * email-based password attempts resetting
-
-* Selfupdate capabilities, with git dependency?
 
