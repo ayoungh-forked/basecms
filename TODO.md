@@ -1,7 +1,9 @@
 
 * nestedSortable: use native collapse methods
 * Admin: wire up history.pushState correctly for admin tabs, or do away with it altogether.
+* fix broken admin tabs
 
+# make humans.txt standards-compliant
 
 ## Other stuff:
 
@@ -12,7 +14,7 @@
 
 * autoload relevant page record for the current path (if it exists)
 
-* image sizing on demand.
+* image sizing on demand, suitable for CDN junk. (have a setting where copies aren't stored locally ever)
 
 * page caching! 
  
@@ -22,7 +24,5 @@
  
 * All requests should go to the local site's index.php, not Base's.
 
-* Change references to 'routes', 'router', and 'routing' to 'maps', 'cartographer', and 'mapping'.
-
 * email-based password attempts resetting
-
+* password attempt lockouts

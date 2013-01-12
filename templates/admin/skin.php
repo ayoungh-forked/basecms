@@ -7,6 +7,7 @@
     <head>
         <meta charset="utf-8" />
         <title>BaseCMS Admin</title>
+        <link rel="author" href="humans.txt" />
         <link href="/styles/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/styles/admin/fonts.css" rel="stylesheet" type="text/css" />
         <link href="/styles/admin/main.css" rel="stylesheet" type="text/css" />

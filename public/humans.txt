@@ -1,10 +1,7 @@
-# humanstxt.org
+
+# Put your site's credits here
 
 
-# Put your site credits here
-
-
-# Please keep the lines below this one!
 
 # Colophon
 
@@ -13,21 +10,20 @@ Author: Michael C Schuller.
 Email: "Michael C Schuller" <petronius@d3mok.net>
 Get the source: https://github.com/petronius/basecms/
 
-Much of the boilerplate included in BaseCMS is taken directly from (or, less 
-often, inspired by) the work of the HTML5 Boilerplate project. 
-See http://html5boilerplate.com/ for their excellent work.
+This project is full of ideas and code from other people's projects, all of
+which are listed below, with their associated URLs.
 
-By default, BaseCMS includes the following resources:
 
 Code:
     The jQuery JavaScript library - http://jquery.com/
-    Components from jQuuery UI - http://jqueryui.com/
+    Components from jQuery UI - http://jqueryui.com/
     The nestedSortable plugin for jQuery UI by Manuele J Sarfatti - http://mjsarfatti.com/
     wysihtml5 HTML text editor by Christopher Blum - https://github.com/xing/wysihtml5/
+    The Bootstrap front-end framework - http://twitter.github.com/bootstrap
+    HTML5 Boilerplate - http://html5boilerplate.com/
 
 Fonts:
     Raleway, by Matt McInerney - http://www.theleagueofmoveabletype.com/raleway
     Websymbols, byJust Be Nice Studio - http://www.justbenicestudio.com/studio/websymbols/
 
-Images:
-    Debut Light by Luke McDonald - http://subtlepatterns.com/debut-light/
+# humanstxt.org
