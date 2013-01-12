@@ -1,6 +1,13 @@
 "use strict";
 
 $(document).ready(function() {
+    
+    
+    
+    window.onpopstate = function(e) {
+        var state = e.state;
+        console.log(state);
+    }
 
     var $nestedSortable = $('.nested_sortable');
     

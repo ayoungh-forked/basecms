@@ -2,20 +2,20 @@
 
 $(document).ready(function () {
     
-    $('nav ul li a').on('click', function (e, ispop) {
+    $('nav ul li a').on('click', function (e, ispop, rel) {
         var $this = $(e.target).closest('a'),
-            rel = $this.attr('rel'),
             $panels = $('#panel_container');
+        if (!rel) rel = $this.attr('rel');
+        console.log(ispop);
         if (rel && rel.length) {
-            e.preventDefault();
-            $panels.hide();
-            $('iframe#menu').attr('src', '/admin/menu?view='+rel);
-            $('iframe#edit_pane').attr('src', '/admin/edit');
-            $this.parent().addClass('active').siblings().removeClass('active');
-            $panels.ready(function() {
-               $panels.show();
-            });
             if (!ispop) {
+                e.preventDefault();
+                $panels.hide();
+                $('iframe#menu').attr('src', '/admin/menu?view='+rel);
+                $('iframe#edit_pane').attr('src', '/admin/edit');
+                $panels.ready(function() {
+                   $panels.show();
+                });
                 var state = {
                     active: rel,
                     url: '/admin/'+rel+'/'
@@ -23,13 +23,14 @@ $(document).ready(function () {
                 console.log(rel, state);
                 window.history.pushState(state, document.title, state.url);
             }
+            $this.parent().addClass('active').siblings().removeClass('active');
         }
     });
     
     window.onpopstate = function(e) {
         var state = e.state;
-        console.log(state);
-        $('nav ul li a[rel="'+state.active+'"] ').trigger('click', [true]);
+        if(state)
+            $('nav ul li a[rel="'+state.active+'"] ').trigger('click', [true, state.active]);
     }
     
 });

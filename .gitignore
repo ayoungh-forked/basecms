@@ -9,3 +9,6 @@
 *.zip
 *.tar.gz
 *.tgz
+
+# Base cache files
+.cache/

@@ -8,7 +8,7 @@
      *
      */
 
-    use BaseCMS\core\Router as Router;
+    use BaseCMS\core\Cartographer as Cartographer;
     use BaseCMS\core\Helpers as h;
      
     class Handler {
@@ -16,8 +16,8 @@
         private $config;
         private $db;
         private $request;
-        private $route_path;
-        private $router;
+        private $map_path;
+        private $cartographer;
         private $error;
         
         private $template;
@@ -37,18 +37,18 @@
             $this->error = $error;
         
             $request_path = h::explode_path($request->path);
-            $routable_path = array();
+            $mappable_path = array();
             foreach($request_path as $v) {
-                if ($v) $routable_path[] = $v;
+                if ($v) $mappable_path[] = $v;
             }           
             
-            $this->route_path = $routable_path;
+            $this->map_path = $mappable_path;
             $this->request = $request;
-            $this->route();
+            $this->map();
             
         }
         
-        protected function route() {
+        protected function map() {
         
             // Check to see if it is a static, public file first:
             try{ 
@@ -62,9 +62,9 @@
                 $this->output = '';
             }
             
-            $this->router = new Router($this->route_path);
+            $this->cartographer = new Cartographer($this->map_path);
             if (!$this->error) {
-                $template = $this->router->find_template();
+                $template = $this->cartographer->find_template();
             } else {
                 $httperr = $this->error->httpcode;
                 if (!$httperr) $httperr = 500;
@@ -84,7 +84,7 @@
             $config = $this->config;
             $db = $this->db;
             
-            $url_params = $this->router->get_params();
+            $url_params = $this->cartographer->get_params();
             $url_args = $url_params['positional'];
             $url_kwargs = $url_params['keyword'];
             
@@ -141,7 +141,7 @@
             $config = $this->config;
             $db = $this->db;
             
-            $url_params = $this->router->get_params();
+            $url_params = $this->cartographer->get_params();
             $url_args = $url_params['positional'];
             $url_kwargs = $url_params['keyword'];
             

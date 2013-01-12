@@ -15,27 +15,12 @@
     foreach ($result as $row) {
         $section_list[] = $row->name;
     }
+    //$section_list[] = 'files';
     if ($user['admin'] || $user['developer'])
         $section_list[] = 'users';
 ?>
-<header>
-    <ul>
-        <li>
-            <a href="/admin/logout/">Log out</a>
-        </li>
-        <li>
-            <a href="/admin/me/">User settings</a>
-        </li>
-        <li>
-            <a href="/">View site</a>
-        </li>
-    </ul>
-    <span class="welcome">
-        Logged in as <?=$name?>
-    </span>
-</header>
 <nav>
-    <ul>
+    <ul class="nav">
         <?php
             foreach($section_list as $s) {
             ?>
@@ -54,3 +39,19 @@
         </li>
     </ul>
 </nav>
+<div id="tools">
+    <ul class="nav nav-pills pull-right">
+        <li>
+            <a href="/admin/logout/">Log out</a>
+        </li>
+        <li>
+            <a href="/admin/me/">User settings</a>
+        </li>
+        <li>
+            <a href="/">View site</a>
+        </li>
+    </ul>
+    <span id="welcome" class="pull-right hidden-phone hidden-tablet">
+        Logged in as <?=$name?>
+    </span>
+</div>

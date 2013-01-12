@@ -65,10 +65,10 @@
         'template' => 'template',
         'description' => 'textarea',
         'keywords' => 'text',
-        //'tags' => 'tags',
+        'tags' => 'tags',
         'content' => 'html',
-        //'styles' => 'css',
-        //'scripts' => 'js',
+        'styles' => 'css',
+        'scripts' => 'js',
         'developer_lock' => 'bool',
         'admin_lock' => 'bool',
         'live_from' => 'datetime',
@@ -84,7 +84,7 @@
     $fields->render('title');
     $fields->render('url_path', 'Path', 'How you want this page to appear in the URL. Eg.: <em>sample-page</em>');
     $fields->render('template', 'Select a template');
-    $fields->render('content', 'Page content');
+    $fields->render('content', 'Page content', 'The main content for this page. How this is displayed will depend on the settings for the template being used.');
     $fields->render('tags');
 ?>
 <h3>Page settings</h3>
@@ -99,5 +99,10 @@
     $fields->render('redirect', 'Redirect URL', 'To redirect to another page instead of displaying this one, add the URL you want to redirect to here.');
     $fields->render('keywords', 'Page keywords', 'A few relevant terms or subjects related to this page\'s content.');
     $fields->render('description', 'Page description', 'A description of this page\'s content for the page metadata, to be used by web crawlers and search engines.');
+    if ($settings['styles_fields'])
+        $fields->render('styles', 'Styles', 'Additional styling data for this page. How this is used depends on the template, but will usually be placed after all other stylesheets and style blocks.');
+    if ($settings['script_fields'])
+        $fields->render('scripts', 'Scripts', 'Additional script data for this page. How this is used depends on the template, but will usually be placed after all other stylesheets and style blocks.');
+        
     $fields->form_end();
     

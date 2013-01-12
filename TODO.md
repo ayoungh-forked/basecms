@@ -1,6 +1,6 @@
 
--> nestedSortable: use native collapse methods
--> Admin: wire up history.pushState correctly for admin tabs, or do away with it altogether.
+* nestedSortable: use native collapse methods
+* Admin: wire up history.pushState correctly for admin tabs, or do away with it altogether.
 
 
 ## Other stuff:
@@ -10,13 +10,11 @@
 * tumblr module (get on request and cache locally(?)(synch too?))
 * wikipedia module?
 
-* /examples/
-* $this->title();
-* $this->description();
-* $this->keywords();
+* autoload relevant page record for the current path (if it exists)
 
 * image sizing on demand.
- 
+
+* page caching! 
  
 * load site settings from the relevant site dir. site's own index.php should
 * define a local $SITE_SETTINGS (or include() it with a base helper?) and the base index

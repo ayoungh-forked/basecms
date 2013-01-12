@@ -47,8 +47,8 @@
             $error = false;
     
         ?>
-        <div id="login_frame">
-            <form action="" method="POST" class="<?=($error ? 'error' : ''); ?>" id="login">
+        <div id="login_frame" class="row">
+            <form action="" method="POST" id="login" class="<?=($error ? 'error' : ''); ?> span4 offset3">
             
                 <h1 id="#logo">BaseCMS</h1>
             
