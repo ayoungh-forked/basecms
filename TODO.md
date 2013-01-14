@@ -1,5 +1,4 @@
 
-* nestedSortable: use native collapse methods
 * Admin: wire up history.pushState correctly for admin tabs, or do away with it altogether.
 * fix broken admin tabs
 

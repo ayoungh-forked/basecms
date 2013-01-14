@@ -3,24 +3,10 @@
     use BaseCMS\core\Helpers as h;
 
 ?>
-<div id="controls">
-    <ul>
-        <li class="expand_all">
-            <a href="#" class="icon">
-               &#93; <span class="description">Expand all</span>
-            </a>
-        </li>
-        <li class="collapse_all">
-            <a href="#" class="icon">
-               &#91; <span class="description">Collapse all</span>
-            </a>
-        </li>
-        <li class="add">
-            <a href="/admin/edit/?view=pages&id=new" target="edit_pane" class="icon">
-                + <span class="description">Add</span>
-            </a>       
-        </li>
-    </ul>
+<div id="controls" class="btn-group">
+    <button class="btn expand_all">&#93; <span class="description">Expand all</span></button>
+    <button class="btn collapse_all">&#91; <span class="description">Collapse all</span></button>
+    <a class="btn add" href="/admin/edit/?view=pages&id=new" target="edit_pane">+ <span class="description">Add</span></a>
 </div>
 <?php
 
@@ -79,14 +65,14 @@
             <div class="page_info handle">
                 <a class="collapse_control">&#91;</a>
                 <a class="expand_control">&#93;</a>
+                <span class="date list-right">
+                    <?=date('d M, Y G:m', strtotime($page->modification_date))?>
+                </span>
                 <a href="/admin/edit/?view=pages&id=<?=$page->id?>" target="edit_pane" class="edit_link">
                     <span class="title">
                         <?=$page->title;?>
                     </span>
                 </a>
-                <span class="date">
-                    <?=date('d M, Y G:m', strtotime($page->modification_date))?>
-                </span>
             </div>
             <?php
                 if (!empty($pages_by_parent[$page_id])) {
@@ -111,7 +97,7 @@
         <span class="title">
             Page title
         </span>
-        <span class="date">
+        <span class="date heading-right">
             Last modified
         </span>
     </div>

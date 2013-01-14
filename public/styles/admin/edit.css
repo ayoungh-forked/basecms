@@ -1,0 +1,61 @@
+html, body, .container, .hero-unit {
+    background-color: transparent;    
+}
+
+form {
+    padding-bottom: 3em;    
+}
+
+.form_buttons {
+    left: 0;
+    margin: auto;
+    position: fixed;
+    bottom:0;
+    text-align: center;
+    width: 100%;
+    text-align: left;
+    padding: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #AAA;
+    background-color: #F5F5F5;
+    box-shadow: 0 1px 3px #555;
+}
+
+.description {
+    font-size: .9em;
+    color: #666;
+    clear: both;
+    text-align: right;
+    font-style: italic;
+    padding-bottom: 1.2em;
+}
+
+label {
+    float: left;
+    clear: left;
+    margin-top: 1em;
+    padding: 4px 6px;
+}
+input,
+textarea {
+    float: right;
+    clear: right;
+    margin-top: 1em;
+    padding-top: 1em;
+}
+
+input[type="text"],
+input[type="datetime"],
+input[type="url"],
+input[type="email"],
+input[type="number"] {
+    width: 50%;    
+}
+
+textarea {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    clear: both;
+    float: none;
+}

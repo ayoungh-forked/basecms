@@ -9495,9 +9495,10 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
         }
       });
       
-      try {
-        console.log("Heya! This page is using wysihtml5 for rich text editing. Check out https://github.com/xing/wysihtml5");
-      } catch(e) {}
+      // Slightly obnoxious
+      //try {
+      //  console.log("Heya! This page is using wysihtml5 for rich text editing. Check out https://github.com/xing/wysihtml5");
+      //} catch(e) {}
     },
     
     isCompatible: function() {
@@ -9538,42 +9539,3 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
     },
     
     /**
-     * Activate editor
-     */
-    enable: function() {
-      this.currentView.enable();
-      return this;
-    },
-    
-    isEmpty: function() {
-      return this.currentView.isEmpty();
-    },
-    
-    hasPlaceholderSet: function() {
-      return this.currentView.hasPlaceholderSet();
-    },
-    
-    parse: function(htmlOrElement) {
-      var returnValue = this.config.parser(htmlOrElement, this.config.parserRules, this.composer.sandbox.getDocument(), true);
-      if (typeof(htmlOrElement) === "object") {
-        wysihtml5.quirks.redraw(htmlOrElement);
-      }
-      return returnValue;
-    },
-    
-    /**
-     * Prepare html parser logic
-     *  - Observes for paste and drop
-     */
-    _initParser: function() {
-      this.on("paste:composer", function() {
-        var keepScrollPosition  = true,
-            that                = this;
-        that.composer.selection.executeAndRestore(function() {
-          wysihtml5.quirks.cleanPastedHTML(that.composer.element);
-          that.parse(that.composer.element);
-        }, keepScrollPosition);
-      });
-    }
-  });
-})(wysihtml5);

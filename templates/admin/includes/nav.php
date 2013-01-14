@@ -19,39 +19,41 @@
     if ($user['admin'] || $user['developer'])
         $section_list[] = 'users';
 ?>
-<nav>
-    <ul class="nav">
-        <?php
-            foreach($section_list as $s) {
-            ?>
-                <li class="<?=($section == $s ? 'active' : '')?>">
-                    <a href="/admin/<?=$s?>/" rel="<?=$s?>">
-                        <?=ucwords($s)?>
-                    </a>
-                </li>
+<div class="container">
+    <nav>
+        <ul class="nav">
             <?php
-            }
-        ?>
-        <li class="<?=($section == 'settings' ? 'active' : '')?>">
-            <a href="/admin/settings/" rel="">
-                Settings
-            </a>
-        </li>
-    </ul>
-</nav>
-<div id="tools">
-    <ul class="nav nav-pills pull-right">
-        <li>
-            <a href="/admin/logout/">Log out</a>
-        </li>
-        <li>
-            <a href="/admin/me/">User settings</a>
-        </li>
-        <li>
-            <a href="/">View site</a>
-        </li>
-    </ul>
-    <span id="welcome" class="pull-right hidden-phone hidden-tablet">
-        Logged in as <?=$name?>
-    </span>
+                foreach($section_list as $s) {
+                ?>
+                    <li class="<?=($section == $s ? 'active' : '')?>">
+                        <a href="/admin/<?=$s?>/" rel="<?=$s?>">
+                            <?=ucwords($s)?>
+                        </a>
+                    </li>
+                <?php
+                }
+            ?>
+            <li class="<?=($section == 'settings' ? 'active' : '')?>">
+                <a href="/admin/settings/" rel="">
+                    Settings
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div id="tools">
+        <ul class="nav nav-pills pull-right">
+            <li>
+                <a href="/admin/logout/">Log out</a>
+            </li>
+            <li>
+                <a href="/admin/me/">User settings</a>
+            </li>
+            <li>
+                <a href="/">View site</a>
+            </li>
+        </ul>
+        <span id="welcome" class="pull-right hidden-phone hidden-tablet">
+            Logged in as <?=$name?>
+        </span>
+    </div>
 </div>

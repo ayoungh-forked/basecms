@@ -1,0 +1,79 @@
+html, body, head, .container {
+    background-color: transparent;    
+}
+
+#controls .btn,
+.collapse_control,
+.expand_control {
+    font-family: 'WebSymbolsRegular';    
+}
+
+.collapsed {
+    display: none;
+}
+
+#controls .btn .description {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#controls {
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    bottom:0;
+    text-align: center;
+}
+
+#list_header {
+    margin-top: 20px;    
+    margin-bottom: 20px;
+}
+
+#list_header {
+    font-weight: bold;  
+    padding-left: 1.25em;
+}
+
+#list_header .heading-right {
+    float: right;    
+    padding-right: 1.25em;
+    padding-left: 0;
+}
+
+#item_list ol {
+    margin: 0;    
+}
+
+#item_list li {
+    list-style: none;
+    padding: .2em 0 0 1.25em;
+}
+
+#item_list li .list-right {
+    float: right;   
+    padding-right: 1.25em;
+}
+
+.page_info.handle {
+    cursor: move;    
+}
+
+.page_info .collapse_control,
+.page_info .expand_control {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    float:left;
+    width: 10px;
+    display: inline-block;
+    text-indent: 6px;
+    width: 20px;
+}
+
+.page_info .edit_link {
+    cursor: pointer;    
+    display: block;
+    clear:none;
+    padding-left: 1em;
+}

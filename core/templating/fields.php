@@ -60,13 +60,13 @@
         function form_end($save_button_label = "Save", $show_delete_button = true, $delete_button_label = "Delete") {
           ?>
             <div class="form_buttons">
-                <button name="submit" class="save" value="1">
+                <button name="submit" class="save btn btn-primary" value="1">
                     <?=$save_button_label?>
                 </button>
                 <?php
                     if ($show_delete_button) {
                 ?>
-                <button name="delete" class="delete" value="1">
+                <button name="delete" class="delete btn" value="1">
                     <?=$delete_button_label?>
                 </button>
                 <?php
