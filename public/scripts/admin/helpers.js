@@ -44,6 +44,31 @@ var h = {
 
     clear_cookie: function (name) {
         h.set_cookie(name, "", -1);
+    },
+    
+    // Unifying method for fullscreen functionality
+    requestFullscreen: function(element) {
+        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            if (element.cancelFullScreen) {
+                element.cancelFullScreen();
+            } else if (element.mozCancelFullScreen) {
+                element.mozCancelFullScreen();
+            } else if (element.webkitCancelFullScreen) {
+                element.webkitCancelFullScreen();
+            }
+        }
     }
     
 };
+
+$(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange', function() {
+    $(document.fullscreenElement  || document.mozFullScreenElement || document.webkitFullscreenElement).toggleClass('fullscreen');  
+});

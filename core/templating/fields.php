@@ -94,7 +94,7 @@
                 $description = '';
                 
             ob_start();
-            echo '<div class="form_field" id="form_field_' . $name . '">';
+            echo '<div class="form_field ' . $type . '_field" id="form_field_' . $name . '">';
             $attrs = '';
             $classes = '';
             $type_attr = null;
@@ -188,7 +188,9 @@
                     $attrs .= $default_value ? 'checked="checked"' : '';
                     ?>
                     <label for="<?=$name?>"><?=$display_title?></label>
-                    <input type="checkbox" name="<?=$name?>" id="<?=$name?>" class="<?=$classes?>" <?=$attrs?> value="1" />
+                    <div class="input_bounding">
+                        <input type="checkbox" name="<?=$name?>" id="<?=$name?>" class="<?=$classes?>" <?=$attrs?> value="1" />
+                    </div>
                     <?=$description?>
                     <?php
                     break;
@@ -205,21 +207,32 @@
         protected function html_toolbar($name) {
             ?>
             <div id="wysihtml5-toolbar-<?=$name?>" class="wysihtml5-toolbar" style="display:none">
-                <a data-wysihtml5-command="bold" title="CTRL+B">bold</a> |
-                <a data-wysihtml5-command="italic" title="CTRL+I">italic</a> |
-                <a data-wysihtml5-command="createLink">insert link</a> |
-                <a data-wysihtml5-command="insertImage">insert image</a> |
-                <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a> |
-                <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a> |
-                <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
-                <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a> |
-                <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a> |
-                <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a> |
-                <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a> |
-                <a data-wysihtml5-command="undo">undo</a> |
-                <a data-wysihtml5-command="redo">redo</a> |
-                <a data-wysihtml5-command="insertSpeech">speech</a>
-                <a data-wysihtml5-action="change_view">switch to html view</a>
+                <a data-wysihtml5-command="insertSpeech">e</a>
+                <a data-wysihtml5-command="insertImage">I</a> 
+                <a data-wysihtml5-command="createLink">K</a> 
+                <select>
+                    <option  data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">No heading</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">Heading 1</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">Heading 2</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3">Heading 3</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4">Heading 4</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5">Heading 5</option>
+                    <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6">Heading 6</option>
+                </select> 
+                <a data-wysihtml5-command="insertUnorderedList">&#xF03A;</a> 
+                <a data-wysihtml5-command="insertOrderedList">&#xF0CB;</a> 
+                <select>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="auto">Default text color</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red" style="color:red;">Red</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green" style="color:green;">Green</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue" style="color:blue;">Blue</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="yellow" style="color:yellow;">Yellow</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="black" style="color:black;">Black</option>
+                    <option data-wysihtml5-command="foreColor" data-wysihtml5-command-value="white" style="color:white;">White</option>
+                </select> 
+                <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote">&#xF10D;</a>
+                <a data-wysihtml5-action="change_view" data-toggle="a">H</a>
+                <a class="toggle-fullscreen" data-toggle="&#xF066;">&#xF065;</a>
                 
                 <div data-wysihtml5-dialog="createLink" style="display: none;">
                   <label>

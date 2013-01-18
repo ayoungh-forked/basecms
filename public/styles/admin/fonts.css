@@ -2,7 +2,16 @@
     font-family: 'WebSymbolsRegular';
     src: url('/fonts/websymbols/websymbols-regular-webfont.eot');
     src: url('/fonts/websymbols/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/websymbols/websymbols-regular-webfont.woff') format('woff'),
-    url('/fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'),
-    url('/fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+         url('/fonts/websymbols/websymbols-regular-webfont.woff') format('woff'),
+         url('/fonts/websymbols/websymbols-regular-webfont.ttf') format('truetype'),
+         url('/fonts/websymbols/websymbols-regular-webfont.svg#WebSymbolsRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('/fonts/fontawesome/fontawesome-webfont.eot');
+    src: url('/fonts/fontawesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/fontawesome/fontawesome-webfont.woff') format('woff'),
+         url('/fonts/fontawesome/fontawesome-webfontt.ttf') format('truetype'),
+         url('/fonts/fontawesome/fontawesome-webfont.svg') format('svg');
 }

@@ -16,16 +16,30 @@ $(document).ready(function () {
                     stylesheets: ['/styles/user-styles.css']
                 });    
                 $this.data('setup', true);
+                $this.on('DOMAttrModified', function(e) {
+                    var $t = $('a[data-wysihtml5-action]'),
+                        val = $t.text(),
+                        rep = $t.data('toggle');
+                    $t.html(rep).data('toggle', val);
+                });
             }
+        });
+        $('a[data-wysihtml5-dialog-action]').addClass('btn').filter('[data-wysihtml5-dialog-action="save"]').addClass('btn-primary');
+        $('.toggle-fullscreen').on('click', function(e) {
+            var $el = $(e.target).closest('.form_field');
+            h.requestFullscreen($el.get(0));
+        });
+        $('iframe.wysihtml5-sandbox').attr({
+            mozallowfullscreen: true,
+            webkitallowfullscreen: true,
+            allowfullscreen: true
         });
         
         $('form').on('change', function () {
             errors = false;
-            console.log(1);
             $(this).find('input, textarea, select').each(function() {
                 var $this = $(this);
                 if ($this.hasClass('confirm')) {
-            console.log(2);
                     var val = $this.val(),
                         name = $this.attr('name'),
                         $pair = $('input[name="'+name.slice(0, name.length - '_confirm'.length)+'"]'),

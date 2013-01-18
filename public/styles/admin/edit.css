@@ -25,37 +25,162 @@ form {
     font-size: .9em;
     color: #666;
     clear: both;
-    text-align: right;
+    text-align: left;
+    float: right;
+    width: 60%;
     font-style: italic;
-    padding-bottom: 1.2em;
+    padding: 0 6px 1.2em;
 }
 
-label {
+.html_field .description,
+.textarea_field .description {
+    width: 100%;
+    float: none;
+}
+
+.form_field:after,
+.input_bounding:after {
+    content: '.';
+    height: 0;
+    visibility: hidden;
+    user-select: none;
+    display: block;
+    clear:both;    
+}
+
+label,
+#wysihtml5-toolbar-content {
     float: left;
     clear: left;
     margin-top: 1em;
     padding: 4px 6px;
+    width: 30%;
 }
 input,
-textarea {
+textarea,
+.input_bounding {
     float: right;
     clear: right;
     margin-top: 1em;
     padding-top: 1em;
 }
 
+.input_bounding {
+    margin-top: .5em;    
+}
+
 input[type="text"],
 input[type="datetime"],
 input[type="url"],
 input[type="email"],
-input[type="number"] {
-    width: 50%;    
+input[type="number"],
+.input_bounding {
+    width: 60%;    
+}
+
+input[type="checkbox"] {
+    clear: both;
+    margin: 0;
+    float: left;
 }
 
 textarea {
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
+    width: 97%;
+    min-width: 97%;
+    max-width: 97%;
     clear: both;
-    float: none;
+}
+
+.html_field textarea {
+    height: 20em;    
+}
+
+.wysihtml5-toolbar,
+.wysihtml5-toolbar a {
+    color: #999;    
+}
+
+.wysihtml5-toolbar a {
+    font-family: 'WebSymbolsRegular'; 
+    text-decoration: none;
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 5px;
+    padding: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.wysihtml5-toolbar a:hover {
+    color: black;    
+}
+
+.wysihtml5-toolbar select {
+    font-size: smaller;
+    background-color: white;
+    margin: 0;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    border: 1px solid #999;
+    padding: 0;
+    line-height: .8em;
+    height: auto;
+    border-radius: 0;
+}
+
+#wysihtml5-toolbar-content {
+    float: right;
+    clear: right;
+    width: auto;
+}
+
+div[data-wysihtml5-dialog] {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px 8px 8px 8px;
+    left: 0;
+    margin: auto;
+    min-width: 300px;
+    position: fixed;
+    right: 0;
+    top: 30%;
+    width: 80%;
+    padding: 10px;
+    color: white;
+}
+div[data-wysihtml5-dialog],
+div[data-wysihtml5-dialog] a {
+    font-family: 'HelveticaNeue', 'Helvetica', 'Arial', sans-serif;
+}
+    
+div[data-wysihtml5-dialog] label {
+    width: 100%;    
+}
+
+div[data-wysihtml5-dialog] label input,
+div[data-wysihtml5-dialog] label select {
+    width: 60%;
+    margin-top: 0;
+    margin-right: 20px;
+    float: right;
+    padding: 4px 6px;
+}
+
+a[data-wysihtml5-dialog-action] {
+    width: auto;
+    color: #333;
+    float: left;
+    margin: 10px 10px 5px;
+}
+
+a[data-wysihtml5-dialog-action="save"] {
+    color: white;    
+}
+
+a[data-wysihtml5-command-value="blockquote"],
+a[data-wysihtml5-command="insertUnorderedList"],
+a[data-wysihtml5-command="insertOrderedList"],
+a.toggle-fullscreen {
+    cursor: pointer;
+    font-family: 'FontAwesome';    
 }

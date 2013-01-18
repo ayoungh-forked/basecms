@@ -47,29 +47,31 @@
             $error = false;
     
         ?>
-        <div id="login_frame" class="row">
-            <form action="" method="POST" id="login" class="<?=($error ? 'error' : ''); ?> span4 offset3">
-            
-                <h1 id="#logo">BaseCMS</h1>
-            
-                <?php
-                if ($error) {
-                    ?>
-                    <p class="error">
-                        Incorrect username or password. Please try again.
-                    </p>
+        <div class="container">
+            <div id="login_frame" class="row">
+                <form action="" method="POST" id="login" class="<?=($error ? 'error' : ''); ?> span4 offset3">
+                
+                    <h1 id="#logo">BaseCMS</h1>
+                
                     <?php
-                }
-                ?>
-                
-                <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Username" />
-                
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Password" />
-                
-                <button>Submit &rarr;</button>
-            </form>
+                    if ($error) {
+                        ?>
+                        <p class="error">
+                            Incorrect username or password. Please try again.
+                        </p>
+                        <?php
+                    }
+                    ?>
+                    
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Username" />
+                    
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password" />
+                    
+                    <button>Submit</button>
+                </form>
+            </div>
         </div>
         <?php
     

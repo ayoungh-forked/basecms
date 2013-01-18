@@ -6,7 +6,6 @@ $(document).ready(function () {
         var $this = $(e.target).closest('a'),
             $panels = $('#panel_container');
         if (!rel) rel = $this.attr('rel');
-        console.log(ispop);
         if (rel && rel.length) {
             if (!ispop) {
                 e.preventDefault();
@@ -20,7 +19,6 @@ $(document).ready(function () {
                     active: rel,
                     url: '/admin/'+rel+'/'
                 };
-                console.log(rel, state);
                 window.history.pushState(state, document.title, state.url);
             }
             $this.parent().addClass('active').siblings().removeClass('active');

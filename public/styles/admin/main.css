@@ -15,6 +15,7 @@ body,iframe {
 
 #login_frame {
     margin-top: 10%;
+    color: white;
 }
 
 #login h1 {
@@ -36,6 +37,10 @@ body,iframe {
 #login button {
     display: block;
     margin: 0 auto;
+}
+
+#login label {
+    display:none;    
 }
 
 body > .container {
