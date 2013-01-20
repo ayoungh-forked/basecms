@@ -15,8 +15,9 @@
             $f = h::base_include('config/map.php', true);
             include($f);
             $this->url_map = $URL_MAP;
-            foreach ($this-url_map as $k => $v) {
-                $this->url_map[$k] = array(array_filter(explode('/', $v)), $v);
+            foreach ($this->url_map as $k => $v) {
+                $e = explode('/', $v);
+                $this->url_map[$k] = array(h::filter($e), $v);
             }
             $this->map_path = $map_path;
             $this->map();
@@ -24,23 +25,28 @@
         
         private function map() {
             $valid_paths = $this->url_map;
-            $star = array();
+            $map_path = $this->map_path;
             $rcount = array();
             $count = 0;
+            $wildcard_match = array();
             
-            foreach ($this->map_path as $k => $v) {
-                $k = $k+1;
-                foreach ($valid_paths as $mk => $mv) {
-                    $mv = explode('/', $mv);
-                    if (!$star[$mk] && !h::starts_with($mv[0][$k], ':') && $mv[0][$k] != '**') {
-                        if ($v != $mv[0][$k]) {
-                            unset($valid_paths[$mk]);
-                        }
-                    } else if ($mv[0][$k] == '**') {
-                        $star[$mk] = true;
+            foreach ($map_path as $seg) {
+            
+                foreach ($valid_paths as $mapkey => $mapping) {
+                    $map = $mapping[0];
+                    $mapseg = $map[$count];
+                    
+                    if ($seg == $mapseg || $mapseg == '*' || $wildcard_match[$mapkey] || h::starts_with($mapseg, ':')) {
+                        if ($mapseg == '*')
+                            $wildcard_match[$mapkey] = true;
+                        continue;
+                    } else {
+                        unset($valid_paths[$mapkey]);
                     }
+                    
                 }
                 $count++;
+                
             }
             
             foreach ($valid_paths as $k => $v) {

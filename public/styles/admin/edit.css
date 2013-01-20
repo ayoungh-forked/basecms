@@ -100,7 +100,7 @@ textarea {
     color: #999;    
 }
 
-.wysihtml5-toolbar a {
+.wysihtml5-toolbar > a {
     font-family: 'WebSymbolsRegular'; 
     text-decoration: none;
     width: 20px;
@@ -111,11 +111,11 @@ textarea {
     display: inline-block;
 }
 
-.wysihtml5-toolbar a:hover {
+.wysihtml5-toolbar > a:hover {
     color: black;    
 }
 
-.wysihtml5-toolbar select {
+.wysihtml5-toolbar > select {
     font-size: smaller;
     background-color: white;
     margin: 0;
@@ -129,12 +129,12 @@ textarea {
     border-radius: 0;
 }
 
+
 #wysihtml5-toolbar-content {
     float: right;
     clear: right;
     width: auto;
 }
-
 div[data-wysihtml5-dialog] {
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 8px 8px 8px 8px;

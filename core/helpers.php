@@ -138,5 +138,17 @@
         static function mysqlish_now() {
             return date('Y-m-d H:i:s');
         }
+        
+        static function filter($array, $func = null) {
+            $narry = array();
+            if ($func) 
+                $array = array_filter($array, $func);
+            else
+                $array = array_filter($array);
+            foreach ($array as $v) {
+                $narry[] = $v;
+            }
+            return $narry;
+        }
     
     }

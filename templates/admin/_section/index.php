@@ -5,7 +5,7 @@
     $section = $url_kwargs['section'];
     if (!$section)
         $section = 'pages';
-    
+        
     switch ($section) {
     
         case 'settings':
