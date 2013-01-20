@@ -82,7 +82,7 @@
     $fields = new Fields($fieldmap, $record, false);
     $fields->form_start();  
 ?>
-<h2>Edit page</h2>
+
 <div class="alert alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
     if ($saved) echo 'Saved.';
     if ($errors) echo 'There was a problem saving this page record. Please check the errors below.';

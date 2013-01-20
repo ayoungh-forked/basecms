@@ -18,6 +18,14 @@ $(document).ready(function() {
         $('.nested_sortable ol').addClass('collapsed');
     }
     
+    $('a').on('click', function(e) {
+        var $this = $(this);
+        if ($this.attr('target') && $this.attr('href')) {
+            e.preventDefault();
+            h.open($this.attr('href'), $this.attr('target'));    
+        }
+    });
+    
     $('.collapse_control').hide();
     $('.expand_control').show();
             

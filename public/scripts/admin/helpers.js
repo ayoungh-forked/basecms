@@ -46,6 +46,11 @@ var h = {
         h.set_cookie(name, "", -1);
     },
     
+    open: function (url, target) {
+        h.set_cookie('base_'+target, url, 0);
+        window.open(url, target);
+    },
+    
     // Unifying method for fullscreen functionality
     requestFullscreen: function(element) {
         if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {

@@ -2,6 +2,16 @@
 
 $(document).ready(function () {
     
+    $('iframe').each(function() {
+        var $this = $(this),
+            name = $this.attr('name'),
+            cval = h.read_cookie('base_'+name);
+        console.log(name, cval);
+        if (cval)
+            $this.attr('src', cval);
+        
+    });
+    
     $('nav ul li a').on('click', function (e, ispop, rel) {
         var $this = $(e.target).closest('a'),
             $panels = $('#panel_container');
@@ -10,8 +20,8 @@ $(document).ready(function () {
             if (!ispop) {
                 e.preventDefault();
                 $panels.hide();
-                $('iframe#menu').attr('src', '/admin/menu?view='+rel);
-                $('iframe#edit_pane').attr('src', '/admin/edit');
+                h.open('/admin/menu?view='+rel, 'menu');
+                h.open('/admin/edit', 'edit_pane');
                 $panels.ready(function() {
                    $panels.show();
                 });
