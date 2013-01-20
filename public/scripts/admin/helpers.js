@@ -72,3 +72,43 @@ var h = {
 $(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange', function() {
     $(document.fullscreenElement  || document.mozFullScreenElement || document.webkitFullscreenElement).toggleClass('fullscreen');  
 });
+
+$(document).ready(function() {
+    
+    /*
+     * Hotkeys!
+     * 
+     */
+    function buttonTrigger($btn, e) {
+        e.preventDefault();
+        // Check to see if there is a menu open with an 'add' button first.
+        var $btn = $(window.top.frames[0].document.getElementsByClassName('btn add').item(0)) || $('.btn.add');
+        if ($btn.length) {
+            if ($btn.get(0).tagName == 'A' && $btn.attr('href'))
+                window.top.open($btn.attr('href'), $btn.attr('target') || window.top.name);
+            else
+                $btn.click();
+        }
+    }
+    
+    if (!window.top.keypress) 
+        window.top.keypress = function(e) {
+            if (!(e.ctrlKey || e.metaKey)) return;
+            switch (e.charCode) {
+                case 110:
+                    // CTRL-N: New
+                    var $btn = $(window.top.frames[0].document.getElementsByClassName('btn add').item(0)) || $('.btn.add');
+                    buttonTrigger($btn, e);
+                    break;
+                case 101:
+                    // CTRL-S: Save
+                    var $btn = $(window.top.frames[1].document.getElementsByClassName('btn save').item(0)) || $('.btn.save');
+                    buttonTrigger($btn, e);
+                    break;
+                    break;
+            }
+        };
+    
+    $('body').on('keypress', window.top.keypress);
+    
+});

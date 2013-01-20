@@ -31,27 +31,4 @@ $(document).ready(function () {
             $('nav ul li a[rel="'+state.active+'"] ').trigger('click', [true, state.active]);
     }
     
-    /*
-     * Hotkeys!
-     * 
-     */
-    window.keypress = function(e) {
-        switch (e.charCode) {
-            case 110:
-                if (e.ctrlKey || e.metaKey) {
-                    e.preventDefault();
-                    // Check to see if there is a menu open with an 'add' button first.
-                    var $btn = $(window.top.frames[0].document.getElementsByClassName('btn add').item(0)) || $('.btn.add');
-                    if ($btn.length) {
-                        if ($btn.get(0).tagName == 'A')
-                            window.top.open($btn.attr('href'), $btn.attr('target'));
-                        else
-                            $btn.click();
-                    }
-                }
-        }
-    }
-    
-    $('body').on('keypress', keypress);
-    
 });

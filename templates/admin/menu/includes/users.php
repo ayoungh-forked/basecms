@@ -18,7 +18,7 @@
     <span class="title">
         User name
     </span>
-    <span class="description">
+    <span class="description heading-right">
         Real name
     </span>
 </div>
@@ -29,7 +29,7 @@
             $roles = array();
             if ($record->admin) $roles[] = 'Administrator';
             if ($record->developer) $roles[] = 'Developer';
-            $roles = implode(', ', $roles);
+            $roles = '<span class="role"'> .implode(', ', $roles);
         ?>
         <li>
             <span class="title">
@@ -37,7 +37,7 @@
                     <?=$record->username?>
                 </a>
             </span>
-            <span class="description">
+            <span class="description list-right">
                 <?=$record->real_name?>
                 <?=($roles ? "($roles)" : '')?>
             </span>

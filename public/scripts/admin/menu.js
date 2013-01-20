@@ -31,7 +31,4 @@ $(document).ready(function() {
         $('.collapsable_list ol').addClass('collapsed');
     });
     
-    if ( window.top.keypress)
-        $('body').on('keypress', window.top.keypress);
-
 });

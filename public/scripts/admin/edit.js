@@ -75,8 +75,5 @@ $(document).ready(function () {
         if (!ok)
             e.preventDefault();
     });
-    
-    if ( window.top.keypress)
-        $('body').on('keypress', window.top.keypress);
         
 });

@@ -19,7 +19,7 @@
     <span class="title">
         Title
     </span>
-    <span class="date">
+    <span class="date heading-right">
         Last modified
     </span>
 </div>
@@ -34,7 +34,7 @@
                     <?=$record->title?>
                 </a>
             </span>
-            <span class="date">
+            <span class="date list-right">
                 <?=$record->modification_date?>
             </span>
         </li>
