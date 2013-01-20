@@ -47,8 +47,42 @@ var h = {
     },
     
     open: function (url, target) {
-        h.set_cookie('base_'+target, url, 0);
+        h.store('base_'+target, url);
         window.open(url, target);
+    },
+    
+    has_local_storage: (function() {
+        try {
+            return 'localStorage' in window && window['localStorage'] !== null;
+        } catch (e) {
+            return false;
+        }    
+    })(),
+    
+    /*
+     * Local storage functions, falling back to cookies. Only useful for small
+     * bits of data.
+     *
+     */
+    store: function(key, data) {
+        if (h.has_local_storage)
+            window.localStorage.setItem(key, data);    
+        else
+            h.set_cookie(key, data, 0);
+    },
+    
+    get: function(key) {
+        if (h.has_local_storage)
+            return window.localStorage.getItem(key);
+        else
+            return h.read_cookie(key);
+    },
+    
+    clear: function(key) {
+        if (h.has_local_storage)
+            return window.localStorage.removeItem(key);
+        else
+            return h.clear_cookie(key);
     },
     
     // Unifying method for fullscreen functionality

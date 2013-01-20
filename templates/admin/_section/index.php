@@ -6,10 +6,15 @@
     if (!$section)
         $section = 'pages';
         
+    $f = null;
+        
     switch ($section) {
     
         case 'settings':
-            $f = $this->include_template('/admin/_section/settings.php', false);
+            $f = $this->include_template('/admin/_section/settings.php', true);
+            break;
+        case 'me':
+            $f = $this->include_template('/admin/_section/me.php', true);
             break;
             
         default:
@@ -26,8 +31,8 @@
         return;
     }
 ?>
-<div id="letterhead">
-    <div>
+<div id="letterhead" class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
         <?php
             $this->include_template('/admin/includes/nav.php');  
             
@@ -38,6 +43,14 @@
         ?>
     </div>
 </div>
-<?php
-
-    include($f);
+<div class="container">
+    <div id="sub_body" class="row-fluid">
+        <div id="panel_container" class="span12">
+            <div class="settings-pane well">
+            <?php
+                include($f);
+            ?>
+            </div>
+        </div>
+    </div>
+</div>

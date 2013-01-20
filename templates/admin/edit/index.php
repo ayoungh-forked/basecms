@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>BaseCMS Admin | Menu</title>
+        <title>BaseCMS | Edit</title>
         <link href="/styles/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="/styles/admin/fonts.css" rel="stylesheet" type="text/css" />
         <link href="/styles/admin/edit.css" rel="stylesheet" type="text/css" />

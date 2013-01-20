@@ -136,7 +136,7 @@
             $this->skins[] = $t;
         }
         
-        protected function include_template($template) {
+        protected function include_template($template, $return_path = false) {
             $request = $this->request;
             $config = $this->config;
             $db = $this->db;
@@ -146,7 +146,10 @@
             $url_kwargs = $url_params['keyword'];
             
             $t = h::template_include($template, true);
-            return include($t);
+            if ($return_path) 
+                return $t;
+            else
+                return include($t);
         }
         
         protected function include_next() {
