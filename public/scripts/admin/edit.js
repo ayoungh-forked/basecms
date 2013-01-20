@@ -37,7 +37,6 @@ $(document).ready(function () {
     
     $(this).find('input, textarea, select').each(function() {
         var $this = $(this);
-        console.log($this, $this.val());
         $this.data('starting-val', $this.val());
     });
     

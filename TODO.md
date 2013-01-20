@@ -27,3 +27,5 @@
 * password attempt lockouts
 
 * Full screen  mode for RTE editor. Basics are ready to go. Fullscreen should fire on wrapper div (so buttons are available), add a class, and adjust styles accordingly to maximize real estate.
+
+* Convert menu lists to tables for records, blog, and users.

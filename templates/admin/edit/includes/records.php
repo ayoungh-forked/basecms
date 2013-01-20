@@ -72,7 +72,7 @@
     
 ?>
 <h2>Edit <?=$view?> entry</h2>
-<div class="alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
+<div class="alert alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
     if ($saved) echo 'Saved.';
     if ($errors) echo 'There was a problem saving this '.$view.' record. Please check the errors below.';
 ?></div>

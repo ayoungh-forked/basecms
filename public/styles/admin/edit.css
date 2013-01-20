@@ -3,11 +3,13 @@ html, body, .container, .hero-unit {
 }
 
 .top-alert {
-    padding: 10px;    
+    padding: 10px;  
+    text-align: center;
 }
 
 .top-alert:empty {
-    display: none;    
+    display: none;
+    text-align: center;
 }
 
 form {
@@ -42,6 +44,13 @@ form {
     width: 60%;
     font-style: italic;
     padding: 0 6px 1.2em;
+}
+
+.description.alert-error,
+.description.alert-success,
+.description.alert-info,
+.description.alert {
+    font-style:normal;    
 }
 
 .html_field .description,
@@ -196,4 +205,21 @@ a[data-wysihtml5-command="insertOrderedList"],
 a.toggle-fullscreen {
     cursor: pointer;
     font-family: 'FontAwesome';    
+}
+
+.form_field.fullscreen {
+    background-color: #F5F5F5;
+    position: relative;
+}
+
+.form_field.fullscreen .wysihtml5-sandbox,
+.form_field.fullscreen textarea {
+    float: none !important;
+    min-width: 99% !important;
+    width: 99% !important;
+    top: 50px !important;
+    bottom: 0 !important;
+    margin: auto !important;
+    position: absolute !important;
+    height: auto!important;
 }
