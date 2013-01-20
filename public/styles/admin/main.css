@@ -9,6 +9,10 @@ body,iframe {
     border: 0;    
 }
 
+.btn:focus, a:focus {
+    outline: none;
+}
+
 #login_frame {
     margin: 0 auto;
 }

@@ -7,6 +7,8 @@
     use BaseCMS\db\RowObject as RowObject;
     
     $user = u::current_user();
+    $saved = false;
+    $errors = false;
     
     $id = $request->params['id'];
     $view = $request->params['view'];
@@ -56,7 +58,7 @@
         'author' => 'hidden',
         'live' => 'bool',
         'draft' => 'bool',
-        //'tags' => '',
+        'tags' => 'tags',
         'content' => 'html',
         'live_from' => 'datetime',
         'live_until' => 'datetime',
@@ -70,10 +72,14 @@
     
 ?>
 <h2>Edit <?=$view?> entry</h2>
+<div class="alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
+    if ($saved) echo 'Saved.';
+    if ($errors) echo 'There was a problem saving this '.$view.' record. Please check the errors below.';
+?></div>
 <?php
     $fields->render('title');
     $fields->render('content', 'Entry content');
-    //$fields->render('tags');
+    $fields->render('tags');
     $fields->render('display_date', 'Publication date', 'The date that will be displayed with this entry.');
 ?>
 <h3>Settings</h3>

@@ -6,14 +6,10 @@
     $records = $db->get('records', array('type_name' => $view), array('display_date', 'creation_date'));
     
 ?>
-<div id="controls">
-    <ul>
-        <li class="add">
-            <a href="/admin/edit/?view=<?=$view?>&id=new" target="edit_pane" class="icon">
+<div id="controls" class="btn-group">
+   <a href="/admin/edit/?view=<?=$view?>&id=new" target="edit_pane" class="btn add">
                 + <span class="description">Add</span>
-            </a>       
-        </li>
-    </ul>
+   </a>       
 </div>
 <div id="list_header">
     <span class="title">

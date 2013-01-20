@@ -54,7 +54,7 @@ var h = {
             } else if (element.mozRequestFullScreen) {
                 element.mozRequestFullScreen();
             } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                element.webkitRequestFullscreen(element.ALLOW_KEYBOARD_INPUT);
             }
         } else {
             if (element.cancelFullScreen) {
@@ -82,7 +82,7 @@ $(document).ready(function() {
     function buttonTrigger($btn, e) {
         e.preventDefault();
         // Check to see if there is a menu open with an 'add' button first.
-        var $btn = $(window.top.frames[0].document.getElementsByClassName('btn add').item(0)) || $('.btn.add');
+        $btn = $(window.top.frames[0].document.getElementsByClassName('btn add').item(0)) || $('.btn.add');
         if ($btn.length) {
             if ($btn.get(0).tagName == 'A' && $btn.attr('href'))
                 window.top.open($btn.attr('href'), $btn.attr('target') || window.top.name);

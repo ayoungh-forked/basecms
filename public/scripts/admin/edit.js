@@ -35,6 +35,12 @@ $(document).ready(function () {
         allowfullscreen: true
     });
     
+    $(this).find('input, textarea, select').each(function() {
+        var $this = $(this);
+        console.log($this, $this.val());
+        $this.data('starting-val', $this.val());
+    });
+    
     $('form').on('change', function () {
         errors = false;
         $(this).find('input, textarea, select').each(function() {
@@ -44,7 +50,7 @@ $(document).ready(function () {
                     name = $this.attr('name'),
                     $pair = $('input[name="'+name.slice(0, name.length - '_confirm'.length)+'"]'),
                     pairval = $pair.val();
-                if (val != pairval) {
+                if (val != pairval && val != $this.data('starting-val')) {
                     errors = true;   
                     $this.addClass('errors');
                     $pair.addClass('errors');
@@ -74,6 +80,16 @@ $(document).ready(function () {
         var ok = window.top.confirm(message);
         if (!ok)
             e.preventDefault();
+    });
+    
+    $('.password_field').each(function() {
+        var $this = $(this);
+        if ($this.find('.alert-error').length) return;
+        var $conf = $this.find('label.confirm, input.confirm').add($this.find('.description').get(-1)).hide();
+        $this.on('keyup', function() {
+            if (!$conf.is(':visible')) 
+                $conf.fadeIn(200);
+        });
     });
         
 });

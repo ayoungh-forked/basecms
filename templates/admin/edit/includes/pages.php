@@ -6,6 +6,8 @@
     use BaseCMS\db\RowObject as RowObject;
     
     $user = u::current_user();
+    $saved = false;
+    $errors = false;
 
     $id = $request->params['id'];
     if (!$id || $id == 'new') {
@@ -33,6 +35,7 @@
     if ($request->params['submit']) {
         $record->_update($request->params);        
         $id = $db->save($record);
+        $saved = true;
         if (!$record->id)
             $record = $db->get_one('pages', array('id' => $id));
         ?>
@@ -80,6 +83,10 @@
     $fields->form_start();  
 ?>
 <h2>Edit page</h2>
+<div class="alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
+    if ($saved) echo 'Saved.';
+    if ($errors) echo 'There was a problem saving this page record. Please check the errors below.';
+?></div>
 <?php
     $fields->render('title');
     $fields->render('url_path', 'Path', 'How you want this page to appear in the URL. Eg.: <em>sample-page</em>');

@@ -2,6 +2,10 @@ html, body, head, .container {
     background-color: transparent;    
 }
 
+.btn:focus, a:focus {
+    outline: none;
+}
+
 #controls .btn,
 .collapse_control,
 .expand_control {

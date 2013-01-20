@@ -117,6 +117,9 @@
                  * them here.
                  * 
                  */
+                case 'tags':
+                    if (!$type_attr) $type_attr = 'text';
+                    $classes .= 'tag-input';
                 case 'search':
                     if (!$type_attr) $type_attr = 'search';
                 case 'date':

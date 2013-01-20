@@ -5,14 +5,10 @@
     $records = $db->get('users');
     
 ?>
-<div id="controls">
-    <ul>
-        <li class="add">
-            <a href="/admin/edit/?view=users&id=new" target="edit_pane" class="icon">
-                + <span class="description">Add</span>
-            </a>       
-        </li>
-    </ul>
+<div id="controls" class="btn-group">
+    <a href="/admin/edit/?view=users&id=new" target="edit_pane" class="btn add">
+        + <span class="description">Add</span>
+    </a>
 </div>
 <div id="list_header">
     <span class="title">
@@ -29,7 +25,7 @@
             $roles = array();
             if ($record->admin) $roles[] = 'Administrator';
             if ($record->developer) $roles[] = 'Developer';
-            $roles = '<span class="role"'> .implode(', ', $roles);
+            $roles = implode(', ', $roles);
         ?>
         <li>
             <span class="title">

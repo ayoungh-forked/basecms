@@ -2,8 +2,20 @@ html, body, .container, .hero-unit {
     background-color: transparent;    
 }
 
+.top-alert {
+    padding: 10px;    
+}
+
+.top-alert:empty {
+    display: none;    
+}
+
 form {
     padding-bottom: 3em;    
+}
+
+.btn:focus, a:focus {
+    outline: none;
 }
 
 .form_buttons {
@@ -74,6 +86,7 @@ input[type="datetime"],
 input[type="url"],
 input[type="email"],
 input[type="number"],
+input[type="password"],
 .input_bounding {
     width: 60%;    
 }

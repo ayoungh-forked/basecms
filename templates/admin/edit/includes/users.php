@@ -25,6 +25,8 @@
     }
     
     $password_description = null;
+    $saved = false;
+    $errors = false;
     
     if ($request->params['submit']) {
     
@@ -33,12 +35,17 @@
                 $request->params['password_hash'] = u::password_hash($request->params['password']);
             } else {
                 // This is just the fallback in case they don't have javascript!
-                $password_description = 'The passwords you entered do not match. Please try again.';
+                $errors = true;
+                $password_description = '<div class="alert alert-error">The passwords you entered do not match. Please try again.</div>';
             }
         }
         
         $record->_update($request->params);
-        $id = $db->save($record);
+        if (!$errors) {
+            $id = $db->save($record);
+            $saved = true;
+        }
+        
         if (!$record->id)
             $record = $db->get_one('users', array('id' => $id));
             
@@ -72,6 +79,10 @@
     
 ?>
 <h2>Edit user</h2>
+<div class="alert-<?=($saved?'success':'')?><?=($errors?'error':'')?> top-alert"><?php
+    if ($saved) echo 'Saved.';
+    if ($errors) echo 'There was a problem saving this user record. Please check the errors below.';
+?></div>
 <?php
     $fields->render('username');
     $fields->render('real_name');
