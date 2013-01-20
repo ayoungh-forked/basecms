@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function() {
-
+    
     var $nestedSortable = $('.nested_sortable'),
         $body = $('body');
         

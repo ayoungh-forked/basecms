@@ -49,7 +49,7 @@
                 <a href="/admin/me/">User settings</a>
             </li>
             <li>
-                <a href="/">View site</a>
+                <a href="/" target="_blank">View site</a>
             </li>
         </ul>
         <span id="welcome" class="pull-right hidden-phone hidden-tablet">

@@ -102,7 +102,7 @@
         
         static function image_type($path) {
             if (function_exists('getimagesize')) {
-                list($width, $height, $type) = getimagesize('herp-derp.png');
+                list($width, $height, $type) = getimagesize($path);
                 return $type;
             }
         }
