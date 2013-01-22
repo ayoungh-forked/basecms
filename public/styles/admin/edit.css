@@ -122,6 +122,10 @@ textarea {
     height: 20em;    
 }
 
+.html_field label {
+    width: auto;    
+}
+
 .wysihtml5-toolbar,
 .wysihtml5-toolbar a {
     color: #999;    
@@ -222,7 +226,7 @@ a.toggle-fullscreen {
 }
 
 .form_field.fullscreen .fs-wrapper {
-    top: 45px;
+    top: 35px;
     bottom: 25px;
     margin: auto;
     position: absolute;
@@ -230,6 +234,17 @@ a.toggle-fullscreen {
     left: 15px;
     right: 15px;
     padding: 0;
+}
+
+.form_field.fullscreen #wysihtml5-toolbar-content {
+    position: absolute;
+    top: -20px;
+    right: 15px;
+}
+
+.form_field.fullscreen label,
+.form_field.fullscreen .description {
+    display: none;
 }
 
 .form_field.fullscreen .fs-wrapper textarea,

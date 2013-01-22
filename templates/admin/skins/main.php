@@ -3,9 +3,10 @@
     $class = 'section-' . (implode(' subsection-', $path));
 ?>
 <!doctype html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
         <title>BaseCMS</title>
         <link rel="author" href="humans.txt" />
         <link href="/styles/vendor/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" />

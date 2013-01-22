@@ -23,19 +23,25 @@ $(document).ready(function () {
             $panels = $('#panel_container');
         if (!rel) rel = $this.attr('rel');
         if (rel && rel.length) {
+            e.preventDefault();
             if (!$frames.length) {
-                e.preventDefault();
                 h.store('base_menu', '');
                 h.store('base_edit_pane', '');
                 window.location = '/admin/'+rel+'/';
                 return;
             }
-            e.preventDefault();
+            var $menu = $frames.filter('#menu'),
+                $edit = $frames.filter('#edit_pane'),
+                visib = $menu.is(':visible');
             $panels.hide();
             h.open('/admin/menu?view='+rel, 'menu');
             h.open('/admin/edit', 'edit_pane');
             $panels.ready(function() {
                $panels.show();
+               if (!visib) {
+                   $menu.show();
+                   $edit.hide();
+               }
             });
             
             $this.parent().addClass('active').siblings().removeClass('active');

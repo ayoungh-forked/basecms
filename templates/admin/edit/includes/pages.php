@@ -105,7 +105,7 @@
         $fields->render('developer_lock', 'Developer lock');
     $fields->render('redirect', 'Redirect URL', 'To redirect to another page instead of displaying this one, add the URL you want to redirect to here.');
     $fields->render('keywords', 'Page keywords', 'A few relevant terms or subjects related to this page\'s content.');
-    $fields->render('description', 'Page description', 'A description of this page\'s content for the page metadata, to be used by web crawlers and search engines.');
+    $fields->render('description', 'Page description', 'A short description of this page\'s content for the page metadata, to be used by web crawlers and search engines.');
     if ($settings['styles_fields'])
         $fields->render('styles', 'Styles', 'Additional styling data for this page. How this is used depends on the template, but will usually be placed after all other stylesheets and style blocks.');
     if ($settings['script_fields'])
