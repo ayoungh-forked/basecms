@@ -35,6 +35,7 @@
     if ($request->params['submit']) {
         $record->_update($request->params);        
         $id = $db->save($record);
+        $saved = true;
         if (!$record->id)
             $record = $db->get_one('records', array('id' => $id));
         ?>

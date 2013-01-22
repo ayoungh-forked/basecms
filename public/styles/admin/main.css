@@ -13,6 +13,11 @@ body,iframe {
     outline: none;
 }
 
+:-webkit-full-screen > * {
+  width: 100%;
+  height: 100%;
+}
+
 #login_frame {
     margin: 0 auto;
 }

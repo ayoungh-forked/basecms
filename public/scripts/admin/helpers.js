@@ -85,31 +85,52 @@ var h = {
             return h.clear_cookie(key);
     },
     
+    requestFullscreenMethod: (function() {
+        var el = document.createElement('div'),
+            vnd = ['requestFullscreen', 'mozRequestFullScreen', 'webkitRequestFullscreen'],
+            i;
+        for (i=0;i<vnd.length;i++) {
+            if (el[vnd[i]]) return vnd[i];    
+        }
+        return null;
+    })(),
+    
+    cancelFullscreenMethod: (function() {
+        var vnd = ['cancelFullscreen', 'mozCancelFullScreen', 'webkitCancelFullscreen'],
+            i;
+        for (i=0;i<vnd.length;i++) {
+            if (document[vnd[i]]) return vnd[i];    
+        }
+        return null
+    })(),
+    
+    fullscreenElement: (function() {
+        var vnd = ['fullscreenElement', 'mozFullScreenElement', 'webkitFullscreenElement'],
+            i;
+        for (i=0;i<vnd.length;i++) {
+            if (vnd[i] in document) return vnd[i];    
+        }
+        return null; 
+    })(),
+    
+    lastFullscreenEl: null,
+    
     // Unifying method for fullscreen functionality
     requestFullscreen: function(element) {
-        if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen(element.ALLOW_KEYBOARD_INPUT);
-            }
+        if (h.requestFullscreenMethod && !document[h.fullscreenElement]) {
+            element[h.requestFullscreenMethod](element.ALLOW_KEYBOARD_INPUT);
+            h.lastFullscreenEl = element;
+        } else if (h.requestFullscreenMethod && h.lastFullscreenEl) {
+            document[h.cancelFullscreenMethod]();
         } else {
-            if (element.cancelFullScreen) {
-                element.cancelFullScreen();
-            } else if (element.mozCancelFullScreen) {
-                element.mozCancelFullScreen();
-            } else if (element.webkitCancelFullScreen) {
-                element.webkitCancelFullScreen();
-            }
+            alert('Your browser does not support viewing this in full screen.');    
         }
     }
     
 };
 
-$(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange', function() {
-    $(document.fullscreenElement  || document.mozFullScreenElement || document.webkitFullscreenElement).toggleClass('fullscreen');  
+$(document).on('mozfullscreenchange webkitfullscreenchange fullscreenchange', function(e) {
+    $(h.lastFullscreenEl).toggleClass('fullscreen'); 
 });
 
 $(document).ready(function() {

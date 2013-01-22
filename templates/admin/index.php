@@ -1,7 +1,7 @@
 <?php
     use BaseCMS\core\Users as u;
 
-    $this->include_skin('/admin/skin.php');
+    $this->include_skin('/admin/skins/main.php');
     $this->include_template('/admin/includes/authenticate.php');
     
     if (!u::logged_in()) {

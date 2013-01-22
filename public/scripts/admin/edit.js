@@ -3,6 +3,7 @@
 $(document).ready(function () {
     
     var errors = false;
+    window.editors = [];
 
     $('textarea.html').each(function() {
         var $this = $(this),
@@ -10,11 +11,12 @@ $(document).ready(function () {
         // If the textarea doesn't have an ID attribute, we can't apply the
         // text editor to it.
         if (id && !$this.data('setup')) {
-            new wysihtml5.Editor(id, {
-                toolbar:      "wysihtml5-toolbar-"+id,
-                parserRules:  wysihtml5ParserRules,
-                stylesheets: ['/styles/user-styles.css']
-            });    
+            this.editor = new wysihtml5.Editor(id, {
+                    toolbar:      "wysihtml5-toolbar-"+id,
+                    parserRules:  wysihtml5ParserRules,
+                    stylesheets: ['/styles/user-styles.css']
+                });
+            window.editors.push(this.editor);
             $this.data('setup', true);
             $this.on('DOMAttrModified', function(e) {
                 var $t = $('a[data-wysihtml5-action]'),
@@ -24,11 +26,13 @@ $(document).ready(function () {
             });
         }
     });
+    
     $('a[data-wysihtml5-dialog-action]').addClass('btn').filter('[data-wysihtml5-dialog-action="save"]').addClass('btn-primary');
     $('.toggle-fullscreen').on('click', function(e) {
         var $el = $(e.target).closest('.form_field');
         h.requestFullscreen($el.get(0));
     });
+    
     $('iframe.wysihtml5-sandbox').attr({
         mozallowfullscreen: true,
         webkitallowfullscreen: true,

@@ -183,7 +183,9 @@
                             $this->html_toolbar($name);    
                         }
                     ?>
-                    <textarea name="<?=$name?>" id="<?=$name?>" <?=$attrs?> class="<?=$classes?>"><?=$default_value?></textarea>
+                    <div class="fs-wrapper">
+                        <textarea name="<?=$name?>" id="<?=$name?>" <?=$attrs?> class="<?=$classes?>"><?=$default_value?></textarea>
+                    </div>
                     <?=$description?>
                     <?php 
                     break;
@@ -213,6 +215,10 @@
                 <a data-wysihtml5-command="insertSpeech">e</a>
                 <a data-wysihtml5-command="insertImage">I</a> 
                 <a data-wysihtml5-command="createLink">K</a> 
+                <a data-wysihtml5-command="justifyLeft">&#xF036;</a> 
+                <a data-wysihtml5-command="justifyFull">&#61497;</a> 
+                <a data-wysihtml5-command="justifyCenter">&#xF037;</a> 
+                <a data-wysihtml5-command="justifyRight">&#61496;</a> 
                 <select>
                     <option  data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p">No heading</option>
                     <option data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">Heading 1</option>

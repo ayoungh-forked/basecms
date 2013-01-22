@@ -12,6 +12,11 @@ html, body, .container, .hero-unit {
     text-align: center;
 }
 
+:-webkit-full-screen > * {
+  width: 100%;
+  height: 100%;
+}
+
 form {
     padding-bottom: 3em;    
 }
@@ -196,12 +201,16 @@ a[data-wysihtml5-dialog-action] {
 }
 
 a[data-wysihtml5-dialog-action="save"] {
-    color: white;    
+    color: white;
 }
 
 a[data-wysihtml5-command-value="blockquote"],
 a[data-wysihtml5-command="insertUnorderedList"],
 a[data-wysihtml5-command="insertOrderedList"],
+a[data-wysihtml5-command="justifyLeft"],
+a[data-wysihtml5-command="justifyFull"],
+a[data-wysihtml5-command="justifyCenter"],
+a[data-wysihtml5-command="justifyRight"],
 a.toggle-fullscreen {
     cursor: pointer;
     font-family: 'FontAwesome';    
@@ -212,14 +221,39 @@ a.toggle-fullscreen {
     position: relative;
 }
 
-.form_field.fullscreen .wysihtml5-sandbox,
-.form_field.fullscreen textarea {
-    float: none !important;
+.form_field.fullscreen .fs-wrapper {
+    top: 45px;
+    bottom: 25px;
+    margin: auto;
+    position: absolute;
+    height: auto;
+    left: 15px;
+    right: 15px;
+    padding: 0;
+}
+
+.form_field.fullscreen .fs-wrapper textarea,
+.form_field.fullscreen .fs-wrapper iframe {
+    max-width: 99% !important;
+    max-height: 99% !important;
     min-width: 99% !important;
+    min-height: 99% !important;
     width: 99% !important;
-    top: 50px !important;
-    bottom: 0 !important;
-    margin: auto !important;
+    height: 99% !important;
+    display: block !important;
     position: absolute !important;
-    height: auto!important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: auto !important;
+    box-sizing: padding-box !important;
+    -o-sizing: padding-box !important;
+    -moz-sizing: padding-box !important;
+    -msie-sizing: padding-box !important;
+    -khtml-sizing: padding-box !important;
+    -webkit-sizing: padding-box !important;
+}
+
+.form_field.fullscreen .fs-wrapper iframe[style*="display: none"] {
+    display:none !important;    
 }

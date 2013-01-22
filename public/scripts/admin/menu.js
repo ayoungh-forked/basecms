@@ -55,5 +55,4 @@ $(document).ready(function() {
     }).on('click', '.collapse_all', function() {   
         $('.collapsable_list ol').addClass('collapsed');
     });
-    
 });
