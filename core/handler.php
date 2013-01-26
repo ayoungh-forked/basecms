@@ -73,6 +73,9 @@
             $this->template = $template;
             $output = $this->render_template();
             
+            // If the postprocess function was defined in the configuration,
+            // run it now.
+            if (function_exists('postprocess')) $output = postprocess($output);
             $this->output = $output;
             
         }

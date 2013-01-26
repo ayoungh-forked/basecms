@@ -3,6 +3,7 @@
     $this->include_skin('/skins/site.php');
     
 ?>
+</style>
 <h1>Welcome to Base</h1>
 <p>
     Welcome to Base. If you can see this page, then you have probably installed Base correctly. If you would
@@ -23,3 +24,5 @@
 <p>
     For information on setting up modules that pull data from other sites, or ignored paths that Base does not attempt to serve or inspect, see <a href="/examples/modules-and-ignored-paths/">this page</a>.
 </p>
+
+<div><a><img></a></div>

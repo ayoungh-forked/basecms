@@ -66,7 +66,7 @@
                 $ouput = 'Internal server error';
                 
             }
-            
+           
             if ($output) echo $output;
             
         }

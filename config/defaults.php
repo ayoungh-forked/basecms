@@ -23,9 +23,9 @@
         'database' => array(
             'engine'   => 'mysql',
             'host'     => 'localhost',
-            'username' => 'root',
-            'password' => '2ust1N_ttc',
-            'database' => 'mschuller',
+            'username' => 'test',
+            'password' => 'test',
+            'database' => 'test',
         ),
         
         // Files that can go away, eg., resized images that can be regenerated.
@@ -35,3 +35,37 @@
         'users_files_dir'     => '/tmp/',
         
     );
+
+            
+    function postprocess($input) {
+
+        $descriptorspec = array(
+           0 => array("pipe", "r"),
+           1 => array("pipe", "w"),
+           2 => array("pipe", "w")
+        );
+
+        $cwd = getcwd();
+        $env = array();
+        $process = proc_open('scripts/pphtml.py', $descriptorspec, $pipes, $cwd, $env);
+
+        if (is_resource($process)) {
+            fwrite($pipes[0], $input);
+            fclose($pipes[0]);
+
+            $output = stream_get_contents($pipes[1]);
+            $errors = stream_get_contents($pipes[2]);
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+
+            // It is important that you close any pipes before calling
+            // proc_close in order to avoid a deadlock
+            $return_value = proc_close($process);
+
+            if ($output) 
+                return $output;
+            else
+                return $errors . " ($return_value)";
+        }
+
+    }
